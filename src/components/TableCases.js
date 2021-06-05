@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import SwitchOrderByAge from './SwitchOrderByAge';
 
 
 const columns = [
@@ -48,6 +49,7 @@ const StyledTableCell = withStyles((theme) => ({
 const TableCases = () => {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
+  const [queryParams, setQueryParams] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -60,9 +62,10 @@ const TableCases = () => {
     setPage(0);
   };
 
+ 
   useEffect(() => {
       
-    const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
+    const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected${queryParams}`
     console.log(searchString)
 
     fetch(searchString)
@@ -81,10 +84,13 @@ const TableCases = () => {
               }); 
             setRows(newRows)
         })
-  }, []);
+  }, [queryParams]);
 
 
   return (
+    <>
+    <SwitchOrderByAge  queryParams={queryParams}
+                       setQueryParams={setQueryParams}/>
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
@@ -136,6 +142,7 @@ const TableCases = () => {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }
 
