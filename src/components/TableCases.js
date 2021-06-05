@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,19 +11,16 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 const columns = [
-  { id: 'name', label: 'Nombre', minWidth: 170 },
-  { id: 'lastname', label: 'Apellido', minWidth: 170 },
-  { id: 'age', label: 'Edad', minWidth: 50 }, 
-  { id: 'genre', label: 'Genero', minWidth: 70 },
-  { id: 'country', label: 'País', minWidth: 170,},
+  { id: 'name', label: 'NOMBRE', minWidth: 100 },
+  { id: 'lastname', label: 'APELLIDO', minWidth: 100 },
+  { id: 'age', label: 'EDAD', minWidth: 50 }, 
+  { id: 'genre', label: 'GENERO', minWidth: 50 },
+  { id: 'country', label: 'PAÍS', minWidth: 200,},
 ];
 
-const createData = (name, lastname, age, genre, country) => {
-  console.log("creando data")
-  return { name, lastname, age, genre, country };
+const createData = (name, lastname, age, genre, country, live) => {
+  return { name, lastname, age, genre, country, live };
 }
-
-
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +29,21 @@ const useStyles = makeStyles({
   container: {
     maxHeight: 440,
   },
+  tableCell: {
+    color: "red",
+  }
 });
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: "black",
+    color: "white",
+  },
+  body: {
+    fontSize: 16,
+  },
+}))(TableCell);
+
 
 const TableCases = () => {
   const classes = useStyles();
@@ -57,10 +68,15 @@ const TableCases = () => {
     fetch(searchString)
         .then(res => res.json())
         .then(data => {
-            let newRows = data.map(result =>  
-              {
+            let newRows = data.map(result =>
+              
+              { let genreStr =   JSON.stringify(result.female);
+                genreStr === "true"
+                ? genreStr = "Femenino"
+                : genreStr = "Masculino"
+
                 return(
-                  createData(result.first_name, result.last_name, result.age, result.female, result.country)
+                  createData(result.first_name, result.last_name, result.age, genreStr, result.country, result.live)
                 )
               }); 
             setRows(newRows)
@@ -72,32 +88,39 @@ const TableCases = () => {
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
+          <TableHead >
+            <TableRow >
               {columns.map((column) => (
-                <TableCell
+                <StyledTableCell
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
                   {column.label}
-                </TableCell>
+                </StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
+                <>
+                  <TableRow  style={{ color: !row.live ? 'red' : 'gray' }}
+                             hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {console.log(row)}
+                    {columns.map((column) => {
+                      const value = row[column.id]                   
+                      console.log(value)
+                      return ( 
+                        <TableCell style={{ color: "inherit"}}
+                                   key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number' ? column.format(value) : value}
+                          
+                        </TableCell>  
+                      );
+                    })}
+                  </TableRow>
+                </>
               );
             })}
           </TableBody>

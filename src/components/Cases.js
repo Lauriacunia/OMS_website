@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 const Cases = () => {
     const classes = useStyles();
     return (
-        <Container className={classes.root} maxWidth="lg">
+        <Container className={classes.root} maxWidth="md">
             <TableCases />
         </Container>
     )
