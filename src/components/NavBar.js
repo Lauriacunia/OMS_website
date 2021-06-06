@@ -90,7 +90,8 @@ const NavBar = () => {
           
           <div className={classes.qtyContainer}>
             <Typography variant="body1" gutterBottom>
-                 {`Total de casos registrados: ${cases}`}
+                 {`Total de casos registrados: `}
+                 <span style={{ color: '#ff63b1' }}>{`${cases}`}</span>
             </Typography>       
           </div>
         </Toolbar>

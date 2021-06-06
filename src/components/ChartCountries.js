@@ -34,7 +34,7 @@ const ChartCountries = () => {
 
     const setConfig = () => {
         barColor = results.map(result => {
-            return ('rgba(153, 102, 255, 0.2)')
+            return ('#fff952')
           })
         console.log(barColor)
 

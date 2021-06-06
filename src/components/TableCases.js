@@ -49,12 +49,12 @@ const useStyles = makeStyles({
     justifyContent: "flex-end"
   },
   title1: {
-    color: "red",
+    color: "gray",
     marginRight: 10,
     fontStyle: "italic",
   },
   title2: {
-    color: "gray",
+    color: "#ff63b1",
     fontStyle: "italic",
   },
   downloadTableBtn: {
@@ -122,7 +122,7 @@ const TableCases = () => {
        <Container className={classes.listContainer}
                    maxWidth="lg">
             <Typography variant="h4" gutterBottom>
-                Conoce el listado de casos positivos registrados de COVID-19
+                Conozca el listado de casos positivos registrados de COVID-19
             </Typography>
     
       <div className={classes.switchContainer}>
@@ -150,7 +150,7 @@ const TableCases = () => {
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
                   <>
-                    <TableRow style={{ color: !row.live ? 'red' : 'gray' }}
+                    <TableRow style={{ color: !row.live ? 'gray' : '#ff63b1' }}
                       hover role="checkbox" tabIndex={-1} key={row.code}>
                       {columns.map((column) => {
                         const value = row[column.id]
@@ -182,11 +182,11 @@ const TableCases = () => {
       <div className={classes.textContainer}>
         <Typography className={classes.title1}
           variant="body2" gutterBottom>
-          Rojo: Pacientes fallecidos
+          Pacientes fallecidos
         </Typography>
         <Typography className={classes.title2}
-          variant="body" gutterBottom>
-          Gris: Pacientes No fallecidos
+          variant="body2" gutterBottom>
+          Pacientes vivos
         </Typography>
       </div>
       <div className={classes.btnContainer}>

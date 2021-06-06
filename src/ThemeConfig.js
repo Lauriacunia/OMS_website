@@ -13,13 +13,13 @@ const theme = createMuiTheme({
           main: "#ff63b1",
         },
         warning: {
-          main: "#ff63b1",
+          main: "#44d9e6",
         },
         info: {
-          main: "#ff63b1",
+          main: "#fff952",
         },
         success: {
-          main: "#ff63b1",
+          main: "#99e265",
         },
       },
 
