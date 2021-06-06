@@ -1,13 +1,12 @@
 import React from 'react'
 import Lottie from 'react-lottie';
-import * as animationData from '../assets/world-map.json';
  
-const Animation = ({height, width}) => {
- 
+const Animation = ({height, width, myAnimation}) => {
+
     const defaultOptions = {
       loop: true,
       autoplay: true, 
-      animationData: animationData.default,
+      animationData: myAnimation,
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice'
       }
@@ -15,8 +14,8 @@ const Animation = ({height, width}) => {
 
     return (
            <Lottie options={defaultOptions}
-                height={height}
-                width={width}
+                   height={height}
+                   width={width}
            />       
       )
   

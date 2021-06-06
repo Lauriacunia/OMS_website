@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import SwitchOrderByAge from './SwitchOrderByAge';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Typography from '@material-ui/core/Typography';
+import { Container } from "@material-ui/core";
 
 const columns = [
   { id: 'name', label: 'NOMBRE', minWidth: 100 },
@@ -118,6 +119,12 @@ const TableCases = () => {
 
   return (
     <>
+       <Container className={classes.listContainer}
+                   maxWidth="lg">
+            <Typography variant="h4" gutterBottom>
+                Conoce el listado de casos positivos registrados de COVID-19
+            </Typography>
+    
       <div className={classes.switchContainer}>
         <SwitchOrderByAge queryParams={queryParams}
           setQueryParams={setQueryParams} />
@@ -191,6 +198,7 @@ const TableCases = () => {
           sheet="tablexls"
           buttonText="Descargar página actual en Excel" />
       </div>
+      </Container>
     </>
   );
 }
