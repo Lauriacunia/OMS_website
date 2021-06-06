@@ -12,13 +12,12 @@ import SwitchOrderByAge from './SwitchOrderByAge';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Typography from '@material-ui/core/Typography';
 
-
 const columns = [
   { id: 'name', label: 'NOMBRE', minWidth: 100 },
   { id: 'lastname', label: 'APELLIDO', minWidth: 100 },
-  { id: 'age', label: 'EDAD', minWidth: 50 }, 
+  { id: 'age', label: 'EDAD', minWidth: 50 },
   { id: 'genre', label: 'GENERO', minWidth: 50 },
-  { id: 'country', label: 'PAÍS', minWidth: 200,},
+  { id: 'country', label: 'PAÍS', minWidth: 200, },
 ];
 
 const createData = (name, lastname, age, genre, country, live) => {
@@ -58,7 +57,7 @@ const useStyles = makeStyles({
     fontStyle: "italic",
   },
   downloadTableBtn: {
-    marginTop:10,
+    marginTop: 10,
     textDecoration: "none",
     padding: 10,
     fontWeight: 400,
@@ -66,7 +65,7 @@ const useStyles = makeStyles({
     color: "#ffffff",
     backgroundColor: "black",
     borderRadius: 5,
-    }
+  }
 });
 
 const StyledTableCell = withStyles((theme) => ({
@@ -96,108 +95,102 @@ const TableCases = () => {
     setPage(0);
   };
 
- 
   useEffect(() => {
-      
+
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected${queryParams}`
-    console.log(searchString)
 
     fetch(searchString)
-        .then(res => res.json())
-        .then(data => {
-            let newRows = data.map(result =>
-              
-              { let genreStr =   JSON.stringify(result.female);
-                genreStr === "true"
-                ? genreStr = "Femenino"
-                : genreStr = "Masculino"
+      .then(res => res.json())
+      .then(data => {
+        let newRows = data.map(result => {
+          let genreStr = JSON.stringify(result.female);
+          genreStr === "true"
+            ? genreStr = "Femenino"
+            : genreStr = "Masculino"
 
-                return(
-                  createData(result.first_name, result.last_name, result.age, genreStr, result.country, result.live)
-                )
-              }); 
-            setRows(newRows)
-        })
+          return (
+            createData(result.first_name, result.last_name, result.age, genreStr, result.country, result.live)
+          )
+        });
+        setRows(newRows)
+      })
   }, [queryParams]);
-
 
   return (
     <>
-    <div className={classes.switchContainer}>
-      <SwitchOrderByAge  queryParams={queryParams}
-                         setQueryParams={setQueryParams}/>
-    </div>
-    
-    <Paper className={classes.rootTable}>
-      <TableContainer className={classes.container}>
-        <Table id="tableToXls" stickyHeader aria-label="sticky table">
-          <TableHead >
-            <TableRow >
-              {columns.map((column) => (
-                <StyledTableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <>
-                  <TableRow  style={{ color: !row.live ? 'red' : 'gray' }}
-                             hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {console.log(row)}
-                    {columns.map((column) => {
-                      const value = row[column.id]                   
-                      console.log(value)
-                      return ( 
-                        <TableCell style={{ color: "inherit"}}
-                                   key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number' ? column.format(value) : value}
-                          
-                        </TableCell>  
-                      );
-                    })}
-                  </TableRow>
-                </>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
-    <div className={classes.textContainer}>
-        <Typography className={classes.title1} 
-                    variant="body2" gutterBottom>
-            Rojo: Pacientes fallecidos
+      <div className={classes.switchContainer}>
+        <SwitchOrderByAge queryParams={queryParams}
+          setQueryParams={setQueryParams} />
+      </div>
+
+      <Paper className={classes.rootTable}>
+        <TableContainer className={classes.container}>
+          <Table id="tableToXls" stickyHeader aria-label="sticky table">
+            <TableHead >
+              <TableRow >
+                {columns.map((column) => (
+                  <StyledTableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <>
+                    <TableRow style={{ color: !row.live ? 'red' : 'gray' }}
+                      hover role="checkbox" tabIndex={-1} key={row.code}>
+                      {columns.map((column) => {
+                        const value = row[column.id]
+                        return (
+                          <TableCell style={{ color: "inherit" }}
+                            key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <div className={classes.textContainer}>
+        <Typography className={classes.title1}
+          variant="body2" gutterBottom>
+          Rojo: Pacientes fallecidos
         </Typography>
-        <Typography className={classes.title2} 
-                    variant="body" gutterBottom>
-            Gris: Pacientes No fallecidos
+        <Typography className={classes.title2}
+          variant="body" gutterBottom>
+          Gris: Pacientes No fallecidos
         </Typography>
-    </div>
-    <div className={classes.btnContainer}>
+      </div>
+      <div className={classes.btnContainer}>
         <ReactHTMLTableToExcel
-                        id="table-xls-button"
-                        className={classes.downloadTableBtn}
-                        table="tableToXls"
-                        filename="tablaCasosPositivosCovid-19"
-                        sheet="tablexls"
-                        buttonText="Descargar página actual en Excel"/>
-    </div>
+          id="table-xls-button"
+          className={classes.downloadTableBtn}
+          table="tableToXls"
+          filename="tablaCasosPositivosCovid-19"
+          sheet="tablexls"
+          buttonText="Descargar página actual en Excel" />
+      </div>
     </>
   );
 }
