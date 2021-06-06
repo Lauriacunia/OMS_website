@@ -8,20 +8,20 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       justifyContent: 'center',
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(0.5),
-      },
+      marginTop:30,
+      marginBottom: 50,
     },
   }));
 
 const WorldData = () => {
     const classes = useStyles();
     return (
-        <Container className={classes.root} maxWidth="lg">
-            <ListCountries />
+        <>
+            <Container className={classes.root} maxWidth="lg">
+                <ListCountries />
+            </Container>
             <ChartCountries />
-        </Container>
+        </>
     )
 }
 

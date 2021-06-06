@@ -30,7 +30,6 @@ const ListCountries = () => {
         fetch(searchString)
           .then(res => res.json())
           .then(data => {
-            console.log(data)
             setResults(data)
           })
       }, []);
