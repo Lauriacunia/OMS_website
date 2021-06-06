@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -55,11 +55,12 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     backgroundColor: "transparent",
     paddingBottom: 10,
-    color: "#fafafa",
+    color: "white",
   },
   tab: {
-      '&:hover': {
-        transform: `scale(1.1)`}
+    '&:hover': {
+      transform: `scale(1.1)`
+    }
   }
 }));
 
@@ -74,39 +75,38 @@ const TabsContainer = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.tabs} position="static" color="white">
+      <AppBar className={classes.tabs} position="static" color="inherit">
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
           indicatorColor="primary"
-          textColor="white"
+          textColor="inherit"
           aria-label="scrollable force tabs example"
         >
-          <Tab className={classes.tab} 
-               onClick={() => { history.push(`/`) }}
-               label="inicio"
-               icon={<HomeIcon />}
+          <Tab className={classes.tab}
+            onClick={() => { history.push(`/`) }}
+            label="inicio"
+            icon={<HomeIcon />}
             {...a11yProps(0)} />
-          <Tab className={classes.tab}  
-               onClick={() => { history.push(`/cases`) }}
-               label="casos"
-               icon={<GroupIcon />}
+          <Tab className={classes.tab}
+            onClick={() => { history.push(`/cases`) }}
+            label="casos"
+            icon={<GroupIcon />}
             {...a11yProps(1)} />
-          <Tab className={classes.tab}  
-               onClick={() => { history.push(`/world_data`) }}
-               label="estadísticas "
-               icon={<PublicIcon />}
+          <Tab className={classes.tab}
+            onClick={() => { history.push(`/world_data`) }}
+            label="estadísticas "
+            icon={<PublicIcon />}
             {...a11yProps(2)} />
-          <Tab className={classes.tab}  
-               onClick={() => { history.push(`/report`) }}
-               label="reporte un caso"
-               icon={<PersonAddIcon />}
+          <Tab className={classes.tab}
+            onClick={() => { history.push(`/report`) }}
+            label="reporte un caso"
+            icon={<PersonAddIcon />}
             {...a11yProps(3)} />
         </Tabs>
       </AppBar>
-
     </div>
   );
 }

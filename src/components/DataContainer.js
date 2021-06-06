@@ -11,21 +11,21 @@ const useStyles = makeStyles({
     titulo: {
         color: "white",
     },
-   
+
 });
 
-const DataContainer = ({title, description}) => {
+const DataContainer = ({ title, description }) => {
     const classes = useStyles();
 
     return (
         <Container className={classes.textContainer}>
             <Typography className={classes.titulo}
-                        variant="h4" gutterBottom>
-                {title} 
+                variant="h4" gutterBottom>
+                {title}
             </Typography>
             <Typography className={classes.titulo}
-                        variant="body1" gutterBottom>
-                {description} 
+                variant="body1" gutterBottom>
+                {description}
             </Typography>
         </Container>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "black",
   },
   navbar: {
-    backgroundColor:"transparent",
-    
+    backgroundColor: "transparent",
   },
-  logo:{
-      cursor: "pointer",
-      '&:hover': {
-        transform: `scale(1.2)`}
+  logo: {
+    cursor: "pointer",
+    '&:hover': {
+      transform: `scale(1.2)`
+    }
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -33,29 +33,28 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NavBar = () => {
-    const classes = useStyles();
-    const history = useHistory();
-    return (
- 
-        <div className={classes.root}>
-            <AppBar className={classes.navbar} position="sticky">
-                <Toolbar>
-                    <Hidden smUp>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                        </IconButton>
-                    </Hidden>
-                    <Imagen className={classes.logo} 
-                        ruta={"https://user-images.githubusercontent.com/63796774/120896551-7c208780-c5f8-11eb-88ba-608f6d9dfe59.png"}
-                        ancho={"70"}
-                        alto={"70"} 
-                        onClick = {()=> { history.push("/")}} /> 
-                    <TabsContainer />             
-                </Toolbar>
-            </AppBar>
-        </div>
-  
-    );
+  const classes = useStyles();
+  const history = useHistory();
+  return (
+
+    <div className={classes.root}>
+      <AppBar className={classes.navbar} position="sticky">
+        <Toolbar>
+          <Hidden smUp>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <Imagen className={classes.logo}
+            ruta={"https://user-images.githubusercontent.com/63796774/120896551-7c208780-c5f8-11eb-88ba-608f6d9dfe59.png"}
+            ancho={"70"}
+            alto={"70"}
+            onClick={() => { history.push("/") }} />
+          <TabsContainer />
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
 export default NavBar
