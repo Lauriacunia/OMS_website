@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TableCases from './TableCases';
+import ChartPandemicEvolution from "./ChartPandemicEvolution";
 
 
 const useStyles = makeStyles({
@@ -18,6 +19,7 @@ const Cases = () => {
     return (
         <Container className={classes.root} maxWidth="md">
             <TableCases />
+            <ChartPandemicEvolution />
         </Container>
     )
 }
