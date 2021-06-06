@@ -12,6 +12,8 @@ import SwitchOrderByAge from './SwitchOrderByAge';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Typography from '@material-ui/core/Typography';
 import { Container } from "@material-ui/core";
+import Animation from './Animation';
+import search from '../assets/search.json';
 
 const columns = [
   { id: 'name', label: 'NOMBRE', minWidth: 100 },
@@ -124,7 +126,7 @@ const TableCases = () => {
             <Typography variant="h4" gutterBottom>
                 Conozca el listado de casos positivos registrados de COVID-19
             </Typography>
-    
+      <Animation height={"auto"} width={500} myAnimation={search} />
       <div className={classes.switchContainer}>
         <SwitchOrderByAge queryParams={queryParams}
           setQueryParams={setQueryParams} />

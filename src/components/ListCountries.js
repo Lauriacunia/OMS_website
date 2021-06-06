@@ -41,7 +41,7 @@ const ListCountries = () => {
         <Container className={classes.listContainer}
                    maxWidth="lg">
             <Typography variant="h4" gutterBottom>
-                Conoce todos los países donde se registran casos positivos de COVID-19
+                Conozca todos los países donde se registran casos positivos de COVID-19
             </Typography>
             <Animation height={"auto"} width={"80vw"} myAnimation={worldMap} />
 
