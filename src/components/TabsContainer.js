@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     backgroundColor: "transparent",
     paddingBottom: 10,
-    color: "#fafafa",
+    color: "white",
   },
   tab: {
     '&:hover': {
@@ -75,14 +75,14 @@ const TabsContainer = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.tabs} position="static" color="white">
+      <AppBar className={classes.tabs} position="static" color="inherit">
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
           indicatorColor="primary"
-          textColor="white"
+          textColor="inherit"
           aria-label="scrollable force tabs example"
         >
           <Tab className={classes.tab}

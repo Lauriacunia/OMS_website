@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Line } from 'react-chartjs-2';
 
@@ -30,8 +30,9 @@ const ChartPandemicEvolution = () => {
   const sortYears = () => {
     yearsAsc = years.sort((a, b) => a - b)
   }
+
   const countYears = () => {
-    pandemicEvolution = yearsAsc.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {});
+    pandemicEvolution = yearsAsc.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
   }
 
   const getQtyCases = () => {

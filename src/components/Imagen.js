@@ -18,6 +18,7 @@ const Imagen = ({ ruta, ancho, alto }) => {
         <div className={classes.imgContainer}>
             <img className={classes.imgContainer}
                 src={ruta}
+                alt="img"
             />
         </div>
     );
