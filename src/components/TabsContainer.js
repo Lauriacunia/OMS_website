@@ -49,18 +49,19 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    color: "white",
     backgroundColor: "transparent",
+    color: "#ffffff",
   },
   tabs: {
     backgroundColor: "transparent",
     paddingBottom: 10,
-    color: "white",
+    color: "#ffffff",
   },
   tab: {
     '&:hover': {
       transform: `scale(1.1)`
-    }
+    },
+    color: "#ffffff",
   }
 }));
 
@@ -75,14 +76,14 @@ const TabsContainer = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.tabs} position="static" color="inherit">
+      <AppBar className={classes.tabs} position="static" color="primary">
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
-          indicatorColor="primary"
-          textColor="inherit"
+          indicatorColor="secondary"
+          textColor="primary"
           aria-label="scrollable force tabs example"
         >
           <Tab className={classes.tab}

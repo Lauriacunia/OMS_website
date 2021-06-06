@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     border: "2px solid white",
     borderRadius: 10,
+    color: "#ffffff",
   }
 
 }));
