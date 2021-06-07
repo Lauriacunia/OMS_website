@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -101,10 +102,9 @@ const TableCases = () => {
 
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected${queryParams}`
 
-    fetch(searchString)
-      .then(res => res.json())
-      .then(data => {
-        let newRows = data.map(result => {
+    axios.get(searchString)
+         .then(response => {
+          let newRows = response.data.map(result => {
           let genreStr = JSON.stringify(result.female);
           genreStr === "true"
             ? genreStr = "Femenino"

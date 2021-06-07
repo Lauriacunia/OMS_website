@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,11 +56,11 @@ const NavBar = () => {
   
   useEffect(() => {
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
-    fetch(searchString)
-      .then(res => res.json())
-      .then(data => {
-        setResults(data)
-      })
+    axios.get(searchString)
+         .then(response => {
+          console.log(response)
+          setResults(response.data)
+    })
   }, []);
   
   const setCases = () =>{

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import { Line } from 'react-chartjs-2';
 
@@ -76,10 +77,9 @@ const ChartPandemicEvolution = () => {
 
   useEffect(() => {
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
-    fetch(searchString)
-      .then(res => res.json())
-      .then(data => {
-        setResults(data)
+    axios.get(searchString)
+      .then(response => {
+        setResults(response.data)
       })
   }, []);
 
