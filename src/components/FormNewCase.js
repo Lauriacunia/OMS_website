@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios'
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -20,13 +20,13 @@ let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
             "Ninguno", "Otro", "Prefiero no decirlo"]
 
 const initialForm = {
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     country: "",
-    live: null,
-    age: null,
+    live: 1,
+    age: 0,
     female: false,
-}
+} 
 
 const useStyles = makeStyles({
     root: {
@@ -68,8 +68,13 @@ const FormNewCase = () => {
     const [form, setForm] = useState(initialForm); 
 
     const handleSubmit = (e) => {
-            console.log("enviaste el formulario")
             e.preventDefault(); 
+
+            axios.post('http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', form)
+            .then(response => {
+                console.log(response)     
+            })
+
     }
 
     const handleChange = (e) => {
@@ -110,13 +115,19 @@ const FormNewCase = () => {
         )
     }
 
+    const handleChangeAge = (e) => {
+            setForm({
+                ...form,
+                [e.target.id]: parseInt(e.target.value)
+            })
+    }
+
     useEffect(() => {
         const searchString = `https://restcountries.eu/rest/v2/all`
-        fetch(searchString)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setCountries(data)
+        axios.get(searchString)
+            .then(response => {
+                console.log(response.data)
+                setCountries(response.data)
             })
     }, []);
 
@@ -135,7 +146,7 @@ const FormNewCase = () => {
                         <TextField 
                             className={classes.input}
                             onChange={handleChange}
-                            id="firstName"
+                            id="first_name"
                             required
                             color="secondary"
                             label="Nombre"
@@ -150,7 +161,7 @@ const FormNewCase = () => {
                         <TextField 
                             className={classes.input}
                             onChange={handleChange}
-                            id="lastName"
+                            id="last_name"
                             required
                             color="secondary"
                             label="Apellido"
@@ -165,14 +176,14 @@ const FormNewCase = () => {
 
                         <TextField className={classes.input}
                             type="number"
-                            onChange={handleChange}
+                            onChange={handleChangeAge}
                             id="age"
-                            readOnly= {true}
+                            readOnly
                             color="secondary"
                             label="Edad"
                             inputProps={{
                                 min: 0,
-                                max: 120
+                                max: 130
                             }}
                             placeholder="Seleccione su edad"
                             margin="normal"
