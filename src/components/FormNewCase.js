@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 
 
@@ -41,12 +42,13 @@ const useStyles = makeStyles({
     input: {
         marginBottom: 20,
         minWidth: 180,
-    }
+    },
+    btnContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+    },
 });
 
-const handleChange = (event) => {
-
-};
 
 let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
             "Androginx", "Trans Femenino", "Trans Masculino", 
@@ -54,8 +56,13 @@ let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
 
 const FormNewCase = () => {
     const classes = useStyles();
-
-    const [results, setResults] = useState([]);
+    const [countries, setCountries] = useState([]);
+    const [name, setName] = useState(""); 
+    const [lastname, setLastname] = useState("");
+    const [location, setLocation] = useState("");
+    const [age, setAge] = useState(null);
+    const [genre, setGenre] = useState("");
+    const [live, setLive] = useState("");
 
     useEffect(() => {
         const searchString = `https://restcountries.eu/rest/v2/all`
@@ -63,19 +70,29 @@ const FormNewCase = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setResults(data)
+                setCountries(data)
             })
     }, []);
 
+    const handleSubmit = (e) => {
+        console.log("enviaste el formulario")
+        e.preventDefault();
+       
+    }
+    
     return (
         <Container className={classes.root} maxWidth="md">
-            <Card className={classes.root}>
+            <Card>
                 <CardContent>
                     <Typography className={classes.subtitle} color="secondary" gutterBottom>
                         Datos Personales
                     </Typography>
-                    <form className={classes.form} noValidate autoComplete="off">
-                        <TextField className={classes.input}
+                    <form className={classes.form}
+                          onSubmit={handleSubmit}
+                          autoComplete="off">
+                        <TextField 
+                            className={classes.input}
+                            onChange={ (e) => {setName(e.target.value)}}
                             required
                             color="secondary"
                             id="standard-full-width"
@@ -92,6 +109,7 @@ const FormNewCase = () => {
                         <TextField className={classes.input}
                             required
                             color="secondary"
+                            onChange={ (e) => {setLastname(e.target.value)}}
                             id="standard-full-width"
                             label="Apellido(s)"
                             placeholder="Ingrese su(s) apellido(s)"
@@ -105,6 +123,7 @@ const FormNewCase = () => {
 
                         <TextField className={classes.input}
                             type="number"
+                            onChange={ (e) => {setAge(e.target.value)}}
                             color="secondary"
                             id="standard"
                             label="Edad"
@@ -119,17 +138,18 @@ const FormNewCase = () => {
                             }}
                         />
 
-                        <FormControl className={classes.input}
+                        <FormControl 
+                            className={classes.input}
                             color="secondary">
                             <InputLabel shrink htmlFor="select genre">
                                 Género
                             </InputLabel>
                             <NativeSelect
+                                onChange={ (e) => {setGenre(e.target.value)}}
                                 color="secondary"
-                                onChange={handleChange}
                                 inputProps={{
-                                    name: 'country',
-                                    id: 'select country',
+                                    name: 'genre',
+                                    id: 'select genre',
                                 }}
                             >
                                 <option value="">None</option>
@@ -147,17 +167,17 @@ const FormNewCase = () => {
                                 País de residencia
                             </InputLabel>
                             <NativeSelect
+                                onChange={ (e) => {setLocation(e.target.value)}}
                                 color="secondary"
-                                onChange={handleChange}
                                 inputProps={{
                                     name: 'country',
                                     id: 'select country',
                                 }}
                             >
                                 <option value="">Elija una opción</option>
-                                {results && (results.map(result => {
+                                {countries && (countries.map(country => {
                                     return (
-                                        <option value={result.name}>{result.name}</option>
+                                        <option value={country.name}>{country.name}</option>
                                     )
                                 }))}
                             </NativeSelect>
@@ -169,8 +189,8 @@ const FormNewCase = () => {
                                 ¿ El paciente vive ?
                             </InputLabel>
                             <NativeSelect
+                                onChange={ (e) => {setLive(e.target.value)}}
                                 color="secondary"
-                                onChange={handleChange}
                                 inputProps={{
                                     name: 'country',
                                     id: 'select country',
@@ -182,15 +202,17 @@ const FormNewCase = () => {
                                 
                             </NativeSelect>
                         </FormControl>
+                        <div className={classes.btnContainer}>
+                            <Button  type="submit" 
+                             variant="contained"
+                             size="large" 
+                             color="secondary"
+                             startIcon={<CloudUploadIcon />}
+                             >ENVIAR</Button>
+                        </div>
                     </form>
-
-
-                </CardContent>
-                <CardActions>
-                    <Button type="submit" size="small" color="secondary">ENVIAR</Button>
-                </CardActions>
+                </CardContent>     
             </Card>
-
         </Container >
     )
 }
