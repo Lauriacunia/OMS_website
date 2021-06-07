@@ -15,7 +15,6 @@ const ChartPandemicEvolution = () => {
   const [results, setResults] = useState([]);
 
   let years = [];
-  let yearsAsc = [];
   let pandemicEvolution = [];
   let qtyCasesForYear = [];
   let options = {};
@@ -23,27 +22,27 @@ const ChartPandemicEvolution = () => {
 
   const getYears = () => {
     years = results.map(result => {
-      return (result.age)
-    })
-  }
-
-  const sortYears = () => {
-    yearsAsc = years.sort((a, b) => a - b)
+      return (result.infect_date)
+    }).map(result => {
+      return (new Date(result))
+    }).map(result => {
+      return (result.getFullYear())
+    }).sort((a, b) => a - b)
   }
 
   const countYears = () => {
-    pandemicEvolution = yearsAsc.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+    pandemicEvolution = years.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
   }
 
   const getQtyCases = () => {
     for (const anio in pandemicEvolution) {
       qtyCasesForYear.push(pandemicEvolution[anio])
     }
-  }
+  };
 
   const setConfig = () => {
     data = {
-      labels: yearsAsc,
+      labels: years,
       datasets: [
         {
           label: 'Evolución de casos positivos COVID-19 por año',
@@ -66,7 +65,7 @@ const ChartPandemicEvolution = () => {
       },
     };
 
-  }
+  };
 
   useEffect(() => {
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
@@ -80,7 +79,6 @@ const ChartPandemicEvolution = () => {
   return (
     <div className={classes.lineContainer} >
       {results && getYears()}
-      {results && sortYears()}
       {results && countYears()}
       {results && getQtyCases()}
       {results && setConfig()}
