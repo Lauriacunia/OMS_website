@@ -1,7 +1,11 @@
+import React, { useState, useEffect } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import FormNewCase from "./FormNewCase"
+
 const Report = () => {
     return (
         <div>
-            <p>Soy Reports</p> 
+            <FormNewCase/> 
         </div>
     )
 }

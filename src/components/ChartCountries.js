@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import { Bar } from 'react-chartjs-2';
 
-const useStyles = makeStyles({
- 
-});
-
-
-
 const ChartCountries = () => {
-    const classes = useStyles();
     const [results, setResults] = useState([]);
     let countries = [];
     let qtyInfected = [];
@@ -29,14 +21,12 @@ const ChartCountries = () => {
         qtyInfected = results.map(result => {
             return (result.infected)
           })
-        console.log(qtyInfected)
     }
 
     const setConfig = () => {
         barColor = results.map(result => {
             return ('#fff952')
           })
-        console.log(barColor)
 
         data = {
             labels: countries,

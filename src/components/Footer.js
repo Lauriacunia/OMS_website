@@ -47,13 +47,13 @@ const Footer = () => {
                 {"FullStack developer"}
             </Typography>
             <div className={classes.iconsContainer}>
-                <a href="https://github.com/Lauriacunia" target="_blank">
+                <a href="https://github.com/Lauriacunia" target="_blank" rel="noreferrer">
                     <IconButton color="secondary" 
                                 aria-label="add an alarm">
                         <GitHubIcon className={classes.icon1} />
                     </IconButton>
                 </a>
-                <a href="https://www.linkedin.com/in/lauriacunia/" target="_blank">
+                <a href="https://www.linkedin.com/in/lauriacunia/" target="_blank" rel="noreferrer">
                    <IconButton color="secondary" 
                                aria-label="add an alarm">
                         <LinkedInIcon className={classes.icon2} />
