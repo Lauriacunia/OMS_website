@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Chip from '@material-ui/core/Chip';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-import Animation from './Animation';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import worldMap from '../assets/world-map.json';
+
 
 const useStyles = makeStyles((theme) => ({
   listContainer: {
@@ -14,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: 'center',
     alignItems: "center",
-    marginTop: 50,
+    marginTop:20,
   },
   chip: {
       margin:10,
@@ -40,11 +38,6 @@ const ListCountries = () => {
 
         <Container className={classes.listContainer}
                    maxWidth="lg">
-            <Typography variant="h4" gutterBottom>
-                Conozca todos los países donde se registran casos positivos de COVID-19
-            </Typography>
-            <Animation height={"auto"} width={"80vw"} myAnimation={worldMap} />
-
             <Grid
                 container
                 direction="row"

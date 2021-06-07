@@ -3,7 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Line } from 'react-chartjs-2';
 
 const useStyles = makeStyles({
-  lineContainer: {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    minWidth: "50vw", 
     marginBottom: 20,
     marginTop: 20,
   },
@@ -23,11 +28,13 @@ const ChartPandemicEvolution = () => {
   const getYears = () => {
     years = results.map(result => {
       return (result.infect_date)
-    }).map(result => {
+    }).sort((a, b) => a - b
+    ).map(result => {
       return (new Date(result))
     }).map(result => {
       return (result.getFullYear())
-    }).sort((a, b) => a - b)
+    })
+    console.log(years)
   }
 
   const countYears = () => {
@@ -77,7 +84,7 @@ const ChartPandemicEvolution = () => {
   }, []);
 
   return (
-    <div className={classes.lineContainer} >
+    <div className={classes.root} >
       {results && getYears()}
       {results && countYears()}
       {results && getQtyCases()}
