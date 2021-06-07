@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import DataContainer from './DataContainer';
 
 const useStyles = makeStyles({
-    container: {
+    root: {
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         height: "600px",
         position: "relative",
         backgroundSize: "cover",
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     dataContainer: {
         display: "flex",
         backgroundColor: "transparent",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         width: "80vw",
         margin: "100px",
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
         height: "100%",
         width: "100%",
         backgroundColor: "black",
-        opacity: 0.6,
+        opacity: 0.4,
     },
 
 
@@ -38,13 +38,11 @@ const useStyles = makeStyles({
 const Hero = () => {
     const classes = useStyles();
     return (
-        <div>
-            <div className={classes.container}>
-                <div className={classes.overlay}></div>
-                <div className={classes.dataContainer}>
-                    <DataContainer title={"Situación Epidemiológica Coronavirus (COVID-19)"}
-                        description={"Conocé las novedades en el mundo acerca de la pandemia"} />
-                </div>
+        <div className={classes.root}>
+            <div className={classes.overlay}></div>
+            <div className={classes.dataContainer}>
+                <DataContainer title={"Situación Epidemiológica Coronavirus (COVID-19)"}
+                    description={`Conozca las novedades del avance de enfermedad en el mundo`} />
             </div>
         </div>
     )

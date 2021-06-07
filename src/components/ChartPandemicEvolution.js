@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import { Line } from 'react-chartjs-2';
 
 const useStyles = makeStyles({
-  lineContainer: {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    minWidth: "50vw", 
     marginBottom: 20,
     marginTop: 20,
   },
@@ -15,7 +21,6 @@ const ChartPandemicEvolution = () => {
   const [results, setResults] = useState([]);
 
   let years = [];
-  let yearsAsc = [];
   let pandemicEvolution = [];
   let qtyCasesForYear = [];
   let options = {};
@@ -23,27 +28,29 @@ const ChartPandemicEvolution = () => {
 
   const getYears = () => {
     years = results.map(result => {
-      return (result.age)
+      return (result.infect_date)
+    }).sort((a, b) => a - b
+    ).map(result => {
+      return (new Date(result))
+    }).map(result => {
+      return (result.getFullYear())
     })
-  }
-
-  const sortYears = () => {
-    yearsAsc = years.sort((a, b) => a - b)
+    console.log(years)
   }
 
   const countYears = () => {
-    pandemicEvolution = yearsAsc.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+    pandemicEvolution = years.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
   }
 
   const getQtyCases = () => {
     for (const anio in pandemicEvolution) {
       qtyCasesForYear.push(pandemicEvolution[anio])
     }
-  }
+  };
 
   const setConfig = () => {
     data = {
-      labels: yearsAsc,
+      labels: years,
       datasets: [
         {
           label: 'Evolución de casos positivos COVID-19 por año',
@@ -66,21 +73,19 @@ const ChartPandemicEvolution = () => {
       },
     };
 
-  }
+  };
 
   useEffect(() => {
     const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
-    fetch(searchString)
-      .then(res => res.json())
-      .then(data => {
-        setResults(data)
+    axios.get(searchString)
+      .then(response => {
+        setResults(response.data)
       })
   }, []);
 
   return (
-    <div className={classes.lineContainer} >
+    <div className={classes.root} >
       {results && getYears()}
-      {results && sortYears()}
       {results && countYears()}
       {results && getQtyCases()}
       {results && setConfig()}
