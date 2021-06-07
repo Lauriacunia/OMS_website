@@ -15,6 +15,18 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 
+let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
+            "Androginx", "Trans Femenino", "Trans Masculino", 
+            "Ninguno", "Otro", "Prefiero no decirlo"]
+
+const initialForm = {
+    firstName: "",
+    lastName: "",
+    country: "",
+    live: null,
+    age: null,
+    female: false,
+}
 
 const useStyles = makeStyles({
     root: {
@@ -50,19 +62,53 @@ const useStyles = makeStyles({
 });
 
 
-let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
-            "Androginx", "Trans Femenino", "Trans Masculino", 
-            "Ninguno", "Otro", "Prefiero no decirlo"]
-
 const FormNewCase = () => {
     const classes = useStyles();
     const [countries, setCountries] = useState([]);
-    const [name, setName] = useState(""); 
-    const [lastname, setLastname] = useState("");
-    const [location, setLocation] = useState("");
-    const [age, setAge] = useState(null);
-    const [genre, setGenre] = useState("");
-    const [live, setLive] = useState("");
+    const [form, setForm] = useState(initialForm); 
+
+    const handleSubmit = (e) => {
+            console.log("enviaste el formulario")
+            e.preventDefault(); 
+    }
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.id]:e.target.value
+        })
+    }
+    const handleChangeGenre = (e) => {
+        e.target.value === "Femenino" 
+        ? (
+            setForm({
+                ...form,
+                [e.target.id]: true
+            })
+        )
+        : (
+            setForm({
+                ...form,
+                [e.target.id]: false
+            })
+        )
+    }
+
+    const handleChangeLive = (e) => {
+        e.target.value === "si" 
+        ? (
+            setForm({
+                ...form,
+                [e.target.id]: 1
+            })
+        )
+        : (
+            setForm({
+                ...form,
+                [e.target.id]: 0
+            })
+        )
+    }
 
     useEffect(() => {
         const searchString = `https://restcountries.eu/rest/v2/all`
@@ -74,11 +120,7 @@ const FormNewCase = () => {
             })
     }, []);
 
-    const handleSubmit = (e) => {
-        console.log("enviaste el formulario")
-        e.preventDefault();
-       
-    }
+   
     
     return (
         <Container className={classes.root} maxWidth="md">
@@ -92,12 +134,12 @@ const FormNewCase = () => {
                           autoComplete="off">
                         <TextField 
                             className={classes.input}
-                            onChange={ (e) => {setName(e.target.value)}}
+                            onChange={handleChange}
+                            id="firstName"
                             required
                             color="secondary"
-                            id="standard-full-width"
-                            label="Nombre(s)"
-                            placeholder="Ingrese su(s) nombre(s)"
+                            label="Nombre"
+                            placeholder="Ingrese su primer nombre"
                             helperText="*Campo Obligatorio"
                             fullWidth
                             margin="normal"
@@ -105,14 +147,14 @@ const FormNewCase = () => {
                                 shrink: true,
                             }}
                         />
-
-                        <TextField className={classes.input}
+                        <TextField 
+                            className={classes.input}
+                            onChange={handleChange}
+                            id="lastName"
                             required
                             color="secondary"
-                            onChange={ (e) => {setLastname(e.target.value)}}
-                            id="standard-full-width"
-                            label="Apellido(s)"
-                            placeholder="Ingrese su(s) apellido(s)"
+                            label="Apellido"
+                            placeholder="Ingrese su primer apellido"
                             helperText="*Campo Obligatorio"
                             fullWidth
                             margin="normal"
@@ -123,9 +165,10 @@ const FormNewCase = () => {
 
                         <TextField className={classes.input}
                             type="number"
-                            onChange={ (e) => {setAge(e.target.value)}}
+                            onChange={handleChange}
+                            id="age"
+                            readOnly= {true}
                             color="secondary"
-                            id="standard"
                             label="Edad"
                             inputProps={{
                                 min: 0,
@@ -145,11 +188,11 @@ const FormNewCase = () => {
                                 Género
                             </InputLabel>
                             <NativeSelect
-                                onChange={ (e) => {setGenre(e.target.value)}}
+                                onChange={handleChangeGenre}
                                 color="secondary"
                                 inputProps={{
-                                    name: 'genre',
-                                    id: 'select genre',
+                                    name: 'female',
+                                    id: 'female',
                                 }}
                             >
                                 <option value="">None</option>
@@ -167,11 +210,11 @@ const FormNewCase = () => {
                                 País de residencia
                             </InputLabel>
                             <NativeSelect
-                                onChange={ (e) => {setLocation(e.target.value)}}
+                                onChange={handleChange}
                                 color="secondary"
                                 inputProps={{
                                     name: 'country',
-                                    id: 'select country',
+                                    id: 'country',
                                 }}
                             >
                                 <option value="">Elija una opción</option>
@@ -189,16 +232,16 @@ const FormNewCase = () => {
                                 ¿ El paciente vive ?
                             </InputLabel>
                             <NativeSelect
-                                onChange={ (e) => {setLive(e.target.value)}}
+                                onChange={handleChangeLive}
                                 color="secondary"
                                 inputProps={{
-                                    name: 'country',
-                                    id: 'select country',
+                                    name: 'live',
+                                    id: 'live',
                                 }}
                             >   
                                 <option value="">Elija una opción</option>
-                                <option value="true">SI</option>
-                                <option value="false">NO</option>
+                                <option value="si">SI</option>
+                                <option value="no">NO</option>
                                 
                             </NativeSelect>
                         </FormControl>
