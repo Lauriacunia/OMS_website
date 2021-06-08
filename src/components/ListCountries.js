@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: 'center',
     alignItems: "center",
-    marginTop:20,
+    marginTop:50,
+    marginBottom: 50,
   },
   chip: {
       margin:10,
@@ -26,7 +27,7 @@ const ListCountries = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`
+        const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`
         axios.get(searchString)
           .then(response => {
             setResults(response.data)
@@ -36,7 +37,7 @@ const ListCountries = () => {
     return (
         <>
         <Container className={classes.listContainer}
-                   maxWidth="lg">
+                   maxWidth="md">
             <Grid
                 container
                 direction="row"

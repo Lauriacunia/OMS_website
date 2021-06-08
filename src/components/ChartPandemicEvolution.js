@@ -76,7 +76,7 @@ const ChartPandemicEvolution = () => {
   };
 
   useEffect(() => {
-    const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
+    const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
     axios.get(searchString)
       .then(response => {
         setResults(response.data)

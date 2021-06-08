@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     body: {
       margin: 0,
       padding: 0,
+      backgroundColor: "#f1f7ee",
     }
   },
   container: {

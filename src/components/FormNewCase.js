@@ -70,7 +70,7 @@ const FormNewCase = () => {
     const handleSubmit = (e) => {
             e.preventDefault(); 
 
-            axios.post('http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', form)
+            axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', form)
             .then(response => {
                 console.log(response)     
             })
