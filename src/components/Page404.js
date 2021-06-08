@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -27,6 +27,10 @@ const Page404 = () => {
     const classes = useStyles();
     const history = useHistory();
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <div>
             <div className={classes.root} >
@@ -35,7 +39,7 @@ const Page404 = () => {
                 </Container>
                 <div className={classes.text} >
                     <Typography className={classes.text} variant="h4" gutterBottom>
-                            Lo sentimos, no podemos hallar la pagina solicitada.
+                            Lo sentimos, no pudimos hallar la pagina solicitada.
                     </Typography>
                     <Button color="secondary" size="small" 
                             onClick={() => { history.push("/")}} >

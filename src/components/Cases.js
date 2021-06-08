@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +33,11 @@ const useStyles = makeStyles({
 
 const Cases = () => {
     const classes = useStyles();
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <div className={classes.root} >
             <div className={classes.titleContainer}>
