@@ -63,7 +63,7 @@ const ChartCountries = () => {
     }
 
     useEffect(() => {
-        const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`
+        const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`
         
         axios.get(searchString)
           .then(response => {

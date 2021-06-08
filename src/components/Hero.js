@@ -5,8 +5,6 @@ import DataContainer from './DataContainer';
 const useStyles = makeStyles({
     root: {
         display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         height: "600px",
         position: "relative",
         backgroundSize: "cover",
@@ -16,8 +14,6 @@ const useStyles = makeStyles({
     dataContainer: {
         display: "flex",
         backgroundColor: "transparent",
-        justifyContent: "flex-start",
-        alignItems: "center",
         width: "80vw",
         margin: "100px",
         zIndex: 5,
@@ -41,8 +37,8 @@ const Hero = () => {
         <div className={classes.root}>
             <div className={classes.overlay}></div>
             <div className={classes.dataContainer}>
-                <DataContainer title={"Situación Epidemiológica Coronavirus (COVID-19)"}
-                    description={`Conozca las novedades del avance de enfermedad en el mundo`} />
+                <DataContainer title={"Situación Epidemiológica Coronavirus"}
+                    description={`Conozca las novedades del avance de la pandemia de COVID-19`} />
             </div>
         </div>
     )

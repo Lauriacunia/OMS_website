@@ -38,10 +38,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   qtyContainer: {
-    minWidth: 250,
-    padding: 10,
-    border: "2px solid white",
-    borderRadius: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minWidth: 300,
+    padding:5,
+    border: "1px solid white",
+    borderRadius: 30,
     color: "#ffffff",
   }
 
@@ -55,7 +58,7 @@ const NavBar = () => {
   let cases;
   
   useEffect(() => {
-    const searchString = `http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
+    const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
     axios.get(searchString)
          .then(response => {
           console.log(response)
@@ -84,15 +87,17 @@ const NavBar = () => {
             ancho={"70"}
             alto={"70"}
             onClick={() => { history.push("/") }} />
+
           <TabsContainer />
-          <div className={classes.animationContainer}>
-            <Animation height={100} width={100} myAnimation={mask} />
-          </div>
           
           <div className={classes.qtyContainer}>
-            <Typography variant="body1" gutterBottom>
-                 {`Total de casos registrados: `}
-                 <span style={{ color: '#ff63b1' }}>{`${cases}`}</span>
+          <div className={classes.animationContainer}>
+            <Animation height={40} width={40} myAnimation={mask} />
+          </div>
+            <Typography variant="body2" gutterBottom>
+                 {`Prevalencia COVID-19: `}
+                 <span style={{ color: '#fff952' }}>{`${cases} `}</span>
+                 {`casos`}
             </Typography>       
           </div>
         </Toolbar>
