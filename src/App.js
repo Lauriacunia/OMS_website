@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Cases from './components/Cases';
 import Report from './components/Report';
 import WorldData from './components/WorldData';
+import Page404 from './components/Page404';
 import Footer from './components/Footer';
 
 const useStyles = makeStyles({
@@ -39,6 +40,7 @@ const App = () => {
           <Route exact path="/cases" component={Cases} />
           <Route exact path="/world_data" component={WorldData} />
           <Route exact path="/report" component={Report} />
+          <Route component={Page404} />
         </Switch>
         <Footer />
       </div>
