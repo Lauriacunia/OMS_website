@@ -7,7 +7,7 @@ const theme = createMuiTheme({
           main: "#ffffff",
         },
         secondary: {
-          main: "#ff63b1",
+          main: "#527669",
         },
         error: {
           main: "#ff63b1",
@@ -22,6 +22,50 @@ const theme = createMuiTheme({
           main: "#99e265",
         },
       },
+      typography: {
+        h1: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 700,
+        },
+        h2: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 700,
+        },
+        h3: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 700,
+        },
+        h4: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 500,
+        },
+        h5: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 500,
+        },
+        h6: {
+          fontFamily: [
+            'Oswald',
+            'sans-serif',  
+          ].join(','),
+          fontWeight: 500,
+        },
+      }
 
 });
 
