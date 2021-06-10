@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: "black",
   },
-  navbar: {
-    backgroundColor: "transparent",
-  },
   logo: {
     cursor: "pointer",
     '&:hover': {
@@ -73,9 +70,7 @@ const NavBar = () => {
   return (
     <>
     {results && setCases()}
-
-    <div className={classes.root}> 
-      <AppBar className={classes.navbar} position="sticky">
+      <AppBar className={classes.root} position="sticky">
         <Toolbar>
           <Hidden smUp>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -102,7 +97,6 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </AppBar>
-    </div>
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
 }
   from 'react-router-dom'
 import 'fontsource-roboto';
+import Container from '@material-ui/core/Container';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Cases from './components/Cases';
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
     }
   },
   container: {
-    backgroundColor: "white",
+    padding: 0,
   },
 });
 
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className={classes.container}>
+      <Container className={classes.container} >
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -43,7 +44,7 @@ const App = () => {
           <Route component={Page404} />
         </Switch>
         <Footer />
-      </div>
+      </Container>
     </BrowserRouter>
   );
 }

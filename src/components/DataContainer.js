@@ -7,7 +7,6 @@ const useStyles = makeStyles({
     textContainer: {
         display: "flex",
         flexDirection: "column",
-        maxWidth: "30vw"
     },
     titulo: {
         color: "white",
@@ -19,16 +18,16 @@ const DataContainer = ({ title, description }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.textContainer} >
+        <Container className={classes.textContainer} maxWidth="false">
             <Typography className={classes.titulo}
-                variant="h1" gutterBottom>
-                {title}
+                        variant="h1" gutterBottom>
+                        {title}
             </Typography>
             <Typography className={classes.titulo}
-                variant="body1" gutterBottom>
-                {description}
+                        variant="body1" gutterBottom>
+                        {description}
             </Typography>
-        </div>
+        </Container>
     )
 }
 
