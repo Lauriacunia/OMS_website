@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import DataContainer from './DataContainer';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         height: "600px",
@@ -11,7 +11,10 @@ const useStyles = makeStyles({
         position: "relative",
         backgroundSize: "cover",
         backgroundPosition: "center-top",
-        backgroundImage: `url(https://live.staticflickr.com/65535/51075135278_318c1ac2bf_h.jpg)`
+        backgroundImage: `url(https://live.staticflickr.com/65535/51075135278_318c1ac2bf_h.jpg)`,
+        [theme.breakpoints.down('sm')]: {
+            height: "370px"
+          },
     },
     dataContainer: {
         display: "flex",
@@ -29,7 +32,7 @@ const useStyles = makeStyles({
         backgroundColor: "black",
         opacity: 0.4,
     },
-});
+}));
 
 const Hero = () => {
     const classes = useStyles();
