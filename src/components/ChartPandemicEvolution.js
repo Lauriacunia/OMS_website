@@ -20,41 +20,44 @@ const ChartPandemicEvolution = () => {
   const classes = useStyles();
   const [results, setResults] = useState([]);
 
-  let years = [];
+  let days = [];
   let pandemicEvolution = [];
-  let qtyCasesForYear = [];
+  let qtyCasesForMonth = [];
   let options = {};
   let data = {};
 
-  const getYears = () => {
-    years = results.map(result => {
+  const getDays = () => {
+    days = results.map(result => {
       return (result.infect_date)
     }).sort((a, b) => a - b
     ).map(result => {
-      return (new Date(result))
+      console.log(new Date(result * 1000))
+      return (new Date(result * 1000))
     }).map(result => {
-      return (result.getFullYear())
+      console.log(result.getDay())
+      return (result.getDay())
     })
-    console.log(years)
+    console.log(days)
   }
 
-  const countYears = () => {
-    pandemicEvolution = years.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+  const countDays = () => {
+    pandemicEvolution = days.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+    console.log(pandemicEvolution)
   }
 
   const getQtyCases = () => {
-    for (const anio in pandemicEvolution) {
-      qtyCasesForYear.push(pandemicEvolution[anio])
+    for (const day in pandemicEvolution) {
+      qtyCasesForMonth.push(pandemicEvolution[day])
     }
   };
 
   const setConfig = () => {
     data = {
-      labels: years,
+      labels: days,
       datasets: [
         {
-          label: 'Evolución de casos positivos COVID-19 por año',
-          data: qtyCasesForYear,
+          label: 'Evolución de casos positivos COVID-19 Junio 2021',
+          data: qtyCasesForMonth,
           fill: false,
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -85,9 +88,10 @@ const ChartPandemicEvolution = () => {
 
   return (
     <div className={classes.root} >
-      {results && getYears()}
-      {results && countYears()}
+      {results && getDays()}
+      {results && countDays()}
       {results && getQtyCases()}
+      {console.log(qtyCasesForMonth)}
       {results && setConfig()}
       <Line data={data} options={options} />
     </div>
