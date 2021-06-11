@@ -54,9 +54,11 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     backgroundColor: "transparent",
-    paddingBottom: 10,
+    paddingBottom: 5,
+   
   },
-  tab: {
+  tab: { 
+    fontSize: 11,
     '&:hover': {
       transform: `scale(1.1)`
     },
@@ -81,7 +83,7 @@ const TabsContainer = () => {
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
-          indicatorColor="primary"
+          indicatorColor="secondary"
           textColor="#ffffff"
           aria-label="scrollable force tabs example"
         >

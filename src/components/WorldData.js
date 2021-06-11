@@ -23,15 +23,23 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: "cover",
         backgroundPosition: "center-top",
     },
+    titleContainer2: {
+        display: "Flex",
+        justifyContent: "flex-start",
+        marginBottom: 50,
+    },
     title: {
         maxWidth: 500,
-        marginTop: 30,
+        margin: "40px 0",
     },
     animation: {
         display: "flex",
         position: "relative",
         marginBottom: 100,
     },
+    chartContainer: {
+        marginBottom: 100,
+    }
    
   }));
 
@@ -78,8 +86,23 @@ const WorldData = () => {
                     </div>     
                 </Container>
             </Hidden>
+
+            <Hidden smDown>
+                 <Container className={classes.titleContainer2}>
+                    <Typography className={classes.title} variant="h2" gutterBottom>
+                        Conozca la prevalencia por País
+                    </Typography>
+                </Container>
+             </Hidden>  
+             <Hidden mdUp>
+                 <Container className={classes.titleContainer2}>
+                    <Typography className={classes.title} variant="h3" gutterBottom>
+                       Conozca la prevalencia por País 
+                    </Typography>
+                </Container>
+             </Hidden>  
           
-            <Container maxWidth="false">
+            <Container className={classes.chartContainer}  maxWidth="false">
                 <ChartCountries />
             </Container>
         </Container>
