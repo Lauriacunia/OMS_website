@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
       margin:10,
+      [theme.breakpoints.down('sm')]: {
+        margin:5,
+      },
   }
 }));
 
@@ -50,7 +53,7 @@ const ListCountries = () => {
                                     <Chip className={classes.chip}
                                         icon={<PersonPinIcon />}
                                         label={result.name}
-                                        color="secondary"
+                                        color="primary"
                                         variant="outlined"
                                     />
                                 )

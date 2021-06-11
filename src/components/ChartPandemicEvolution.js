@@ -20,7 +20,6 @@ const ChartPandemicEvolution = () => {
   const classes = useStyles();
   const [results, setResults] = useState([]);
 
-  let days = [];
   let qtyCasesForMonth = [];
   let currentMonthNumber;
   let currentMonth = "";
@@ -33,7 +32,7 @@ const ChartPandemicEvolution = () => {
   let yAxis = [];
   let options = {};
   let data = {};
-  let  newPandemicEvolution = {};
+  let newPandemicEvolution = {};
 
 
   const isLeapYear = () => {
@@ -119,6 +118,7 @@ const ChartPandemicEvolution = () => {
     console.log(yAxis)
   }
   /////////
+
   const drawChart = () => {
     getCurrentMonth();
     getQtyDaysOfMonth();
@@ -135,18 +135,12 @@ const ChartPandemicEvolution = () => {
   ////////// 
 
 
-  const getQtyCases = () => {
-    for (const day in pandemicEvolution) {
-      qtyCasesForMonth.push(pandemicEvolution[day])
-    }
-  };
-
   const setConfig = () => {
     data = { 
       labels: xAxis,
       datasets: [
         {
-          label: 'Evolución de casos positivos COVID-19 Junio 2021',
+          label: `Evolución de casos positivos COVID-19 ${currentMonth} ${currentYear}`,
           data: yAxis,
           fill: false,
           backgroundColor: 'rgb(255, 99, 132)',

@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme =>({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
+        alignItems: "center",
         marginBottom: 20,
         marginTop: 20,
     },
@@ -61,17 +62,56 @@ const Cases = () => {
              <Hidden smDown>
                 <Container maxWidth="md">
                     <Animation height={"auto"} width={500} myAnimation={people} />
-                    <TableCases />
-                    <ChartPandemicEvolution />
                 </Container>
              </Hidden>
              <Hidden mdUp>
-                <Container maxWidth="sm">
+                <Container maxWidth="xs">
                     <Animation height={"auto"} width={300} myAnimation={people} />
-                    <TableCases />
-                    <ChartPandemicEvolution />
                 </Container>
-             </Hidden>    
+             </Hidden>
+
+             <Hidden smDown>
+                <Container maxWidth="md">
+                    <TableCases />
+                </Container>
+             </Hidden>
+
+             <Hidden mdUp>
+                <Container maxWidth="sm">
+                    <TableCases />
+                </Container>
+             </Hidden>
+
+             <Hidden smDown>
+                <Container maxWidth="md">
+                    <Typography  className={classes.title} variant="h2" gutterBottom>
+                        Conozca la incidencia de casos positivos COVID-19 de éste mes
+                    </Typography>
+                </Container>
+             </Hidden>
+
+             <Hidden mdUp>
+                <Container maxWidth="sm">
+                    <Typography  className={classes.title} variant="h3" gutterBottom>
+                        Conozca la incidencia de casos positivos COVID-19 de éste mes
+                    </Typography> 
+                </Container>
+             </Hidden>  
+
+             <Hidden smDown>
+                 <Container maxWidth="md">
+                    <ChartPandemicEvolution />
+                 </Container>
+             </Hidden>
+             <Hidden mdUp>
+                 <Container maxWidth="sm">
+                    <ChartPandemicEvolution />
+                 </Container>
+             </Hidden>
+            
+            
+
+                
         </Container>
     )
 }
