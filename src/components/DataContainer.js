@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme =>({
     titulo: {
         color: "white",
     },
-
 }));
 
 const DataContainer = ({ title, description }) => {
