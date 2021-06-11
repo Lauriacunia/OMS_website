@@ -20,41 +20,128 @@ const ChartPandemicEvolution = () => {
   const classes = useStyles();
   const [results, setResults] = useState([]);
 
-  let years = [];
+  let qtyCasesForMonth = [];
+  let currentMonthNumber;
+  let currentMonth = "";
+  let currentYear = 2021;
+  let daysOfTheMonth = 31;
+  let onlyDatesOfCurrentMonth =[];
+  let allDaysOfTheMonth = [];
   let pandemicEvolution = [];
-  let qtyCasesForYear = [];
+  let xAxis = [];
+  let yAxis = [];
   let options = {};
   let data = {};
+  let newPandemicEvolution = {};
 
-  const getYears = () => {
-    years = results.map(result => {
+
+  const isLeapYear = () => {
+    let today = new Date();
+    currentYear = today.getFullYear();
+    console.log(`Es el año: ${currentYear}`)
+    return (currentYear % 400 === 0) ? true : 
+  			   (currentYear % 100 === 0) ? false : 
+  			    currentYear % 4 === 0;
+  }
+
+  const getQtyDaysOfMonth = () =>{
+    currentMonthNumber === 2 && (
+       isLeapYear
+       ? daysOfTheMonth = 28
+       : daysOfTheMonth = 29
+    )
+    currentMonthNumber === 3 && (daysOfTheMonth = 30)
+    currentMonthNumber === 5 && (daysOfTheMonth = 30)
+    currentMonthNumber === 8 && (daysOfTheMonth = 30)
+    currentMonthNumber === 10 && (daysOfTheMonth = 30)
+    console.log(`Este mes tiene ${daysOfTheMonth}`) 
+    
+  }
+
+  const fillXAxis = () =>{
+    for (let i = 0; i < daysOfTheMonth ; i++) {
+          xAxis.push(i+1);      
+    }
+    console.log(xAxis) 
+  }
+  const getCurrentMonth = () => {
+     let today = new Date();
+     let meses = ["Enero", "Febrero", "Marzo", "Abril",
+                   "Mayo", "Junio", "Julio", "Agosto", 
+                   "Septiembre", "Octubre", "Noviembre", 
+                   "Diciembre"];
+     currentMonthNumber = today.getMonth();
+     currentMonth = meses[currentMonthNumber];
+     console.log(`Mes actual: ${currentMonth}`)    
+  }
+
+  const filterCurrentMonth = () => {
+    let allDates = results.map(result => {
       return (result.infect_date)
     }).sort((a, b) => a - b
     ).map(result => {
-      return (new Date(result))
-    }).map(result => {
-      return (result.getFullYear())
+      return (new Date(result * 1000))
     })
-    console.log(years)
+    console.log(`Todas las fechas de la API : ${allDates}`)
+
+    allDates.map(result => {
+      result.getMonth() === currentMonthNumber && (onlyDatesOfCurrentMonth.push(result))
+    })
+    console.log(`Las fechas de este mes son: ${onlyDatesOfCurrentMonth}`)
+  }
+  const filterDays = () => {
+    allDaysOfTheMonth = onlyDatesOfCurrentMonth.map(result => {
+      return result.getDate()
+    })
+    console.log(`Todos los dias con casos positivos del mes son: ${allDaysOfTheMonth}`)
   }
 
-  const countYears = () => {
-    pandemicEvolution = years.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+  const countCasesForDayOfTheMonth = () => {
+    pandemicEvolution = allDaysOfTheMonth.reduce((a, b) => (a[b] ? a[b] += 1 : a[b] = 1, a), {})
+    console.log(pandemicEvolution)
   }
 
-  const getQtyCases = () => {
-    for (const anio in pandemicEvolution) {
-      qtyCasesForYear.push(pandemicEvolution[anio])
+  const createNewPandemicEvolution = (nuevaPropiedad) => {
+   console.log(nuevaPropiedad)
+   newPandemicEvolution = {...pandemicEvolution}
+   console.log(newPandemicEvolution)
+  }
+
+  const fillYAxis = () => {
+    let pandemicEvolutionII = xAxis.reduce((a, b) => (a[b] ? a[b] += 0 : a[b] = 0, a), {})
+    console.log(pandemicEvolutionII)
+    let final = {...pandemicEvolutionII,...pandemicEvolution }
+    console.log(final)
+     for (const parametro in final) {
+       yAxis.push(final[parametro])
     }
-  };
+    console.log(yAxis)
+  }
+  /////////
+
+  const drawChart = () => {
+    getCurrentMonth();
+    getQtyDaysOfMonth();
+    fillXAxis();
+  }
+
+  const fillChart = () => {
+    filterCurrentMonth()
+    filterDays();
+    countCasesForDayOfTheMonth();
+    fillYAxis();
+  }
+
+  ////////// 
+
 
   const setConfig = () => {
-    data = {
-      labels: years,
+    data = { 
+      labels: xAxis,
       datasets: [
         {
-          label: 'Evolución de casos positivos COVID-19 por año',
-          data: qtyCasesForYear,
+          label: `Evolución de casos positivos COVID-19 ${currentMonth} ${currentYear}`,
+          data: yAxis,
           fill: false,
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -85,10 +172,9 @@ const ChartPandemicEvolution = () => {
 
   return (
     <div className={classes.root} >
-      {results && getYears()}
-      {results && countYears()}
-      {results && getQtyCases()}
-      {results && setConfig()}
+      {results && drawChart()}
+      {results && fillChart()}
+      {results && setConfig()} 
       <Line data={data} options={options} />
     </div>
   )

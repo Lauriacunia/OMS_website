@@ -26,15 +26,15 @@ const Report = () => {
     return (
         <>
             <Container className={classes.root} maxWidth="lg">
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom align="center">
                     Reporte un nuevo caso positivo de COVID-19
                 </Typography>
-                <Typography variant="body1" gutterBottom>
-                    Si usted desea informar un caso con diagnóstico positivo de COVID-19 
-                    le solicitamos que colabore con nuestros registros 
-                    completando el siguiente formulario.
+                <Typography variant="body1" gutterBottom align="center">
+                    Si usted desea informar un nuevo caso con diagnóstico positivo de COVID-19 
+                    realizado por las autoridades sanitarias de su país de residencia 
+                    le solicitamos complete el siguiente formulario.
                 </Typography>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body1" gutterBottom align="center">
                     Los datos personales del paciente serán utilizados solo con fines
                     de Vigilancia Epidemiológica.
                 </Typography>

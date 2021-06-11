@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-    minWidth: '80vw',
+    minWidth: '70vw',
   }, 
   switchContainer: {
     display: "flex",
@@ -120,7 +121,7 @@ const TableCases = () => {
 
   return (
      
-      <div className={classes.root}>
+     <Container maxWidth="false" className={classes.root}>
         <div className={classes.switchContainer}>
           <SwitchOrderByAge queryParams={queryParams}
             setQueryParams={setQueryParams} />
@@ -192,7 +193,7 @@ const TableCases = () => {
             sheet="tablexls"
             buttonText="Descargar página actual en Excel" />
         </div>
-      </div>
+      </Container>
      
     );
 }

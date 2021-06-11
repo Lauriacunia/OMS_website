@@ -1,10 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
 const Imagen = ({ ruta, ancho, alto }) => {
     const useStyles = makeStyles({
         imgContainer: {
             display: "flex",
+            padding: 0,
             width: `${ancho}px`,
             height: `${alto}px`,
         },
@@ -15,12 +17,12 @@ const Imagen = ({ ruta, ancho, alto }) => {
 
     const classes = useStyles();
     return (
-        <div className={classes.imgContainer}>
+        <Container className={classes.imgContainer}>
             <img className={classes.imgContainer}
                 src={ruta}
                 alt="img"
             />
-        </div>
+        </Container>
     );
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Hidden from '@material-ui/core/Hidden';
 import ListCountries from './ListCountries';
 import ChartCountries from './ChartCountries';
 import Typography from '@material-ui/core/Typography';
@@ -12,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        marginBottom: 20,
-        marginTop: 20,
+        padding: 0,
     },
     titleContainer: {
         display: "Flex",
@@ -23,16 +23,23 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: "cover",
         backgroundPosition: "center-top",
     },
+    titleContainer2: {
+        display: "Flex",
+        justifyContent: "flex-start",
+        marginBottom: 50,
+    },
     title: {
-        marginRight:150,
-        maxWidth: 450,
-        marginTop: 30,
+        maxWidth: 500,
+        margin: "40px 0",
     },
     animation: {
         display: "flex",
         position: "relative",
         marginBottom: 100,
     },
+    chartContainer: {
+        marginBottom: 100,
+    }
    
   }));
 
@@ -44,22 +51,61 @@ const WorldData = () => {
       }, [])
       
     return (
-       
-        <div className={classes.root} >
-            <div className={classes.titleContainer}>
-                <Typography className={classes.title} variant="h2" gutterBottom>
-                    Conozca todos los países donde se registran casos positivos de COVID-19
-                </Typography>
-            </div>
-            <Container maxWidth="lg">
-                 <ListCountries /> 
-                 <div className={classes.animation} >
-                    <Animation height={"430px"} width={"70vw"} myAnimation={worldMap} />
-                 </div>     
-            </Container>
-            <ChartCountries />
-        </div>
         
+        <Container className={classes.root} maxWidth="false">
+             <Hidden smDown>
+                 <Container className={classes.titleContainer}>
+                    <Typography className={classes.title} variant="h2" gutterBottom>
+                        Conozca los países con Vigilancia Epidemiológica 
+                    </Typography>
+                </Container>
+             </Hidden>  
+             <Hidden mdUp>
+                 <Container className={classes.titleContainer}>
+                    <Typography className={classes.title} variant="h3" gutterBottom>
+                        Conozca los países con Vigilancia Epidemiológica 
+                    </Typography>
+                </Container>
+             </Hidden>       
+            
+            <Container maxWidth="lg">
+                <ListCountries />
+            </Container>
+            
+            <Hidden smDown>
+                <Container> 
+                    <div className={classes.animation} >
+                        <Animation height={"450px"} width={"100%"} myAnimation={worldMap} />
+                    </div>     
+                </Container>
+            </Hidden>
+            <Hidden mdUp>
+                <Container> 
+                    <div className={classes.animation} >
+                        <Animation height={"330px"} width={"100%"} myAnimation={worldMap} />
+                    </div>     
+                </Container>
+            </Hidden>
+
+            <Hidden smDown>
+                 <Container className={classes.titleContainer2}>
+                    <Typography className={classes.title} variant="h2" gutterBottom>
+                        Conozca la prevalencia por País
+                    </Typography>
+                </Container>
+             </Hidden>  
+             <Hidden mdUp>
+                 <Container className={classes.titleContainer2}>
+                    <Typography className={classes.title} variant="h3" gutterBottom>
+                       Conozca la prevalencia por País 
+                    </Typography>
+                </Container>
+             </Hidden>  
+          
+            <Container className={classes.chartContainer}  maxWidth="false">
+                <ChartCountries />
+            </Container>
+        </Container>
     )
 }
 

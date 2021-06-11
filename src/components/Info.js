@@ -1,13 +1,19 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 import CardInfo from "./CardInfo"
 
-const useStyles = makeStyles({
- 
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: "flex",
+        flexDirection: 'column',
+        padding: 0,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
+}));
 
-});
 
 const Info = () => {
     const classes = useStyles();
