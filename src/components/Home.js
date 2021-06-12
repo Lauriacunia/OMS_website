@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Hero from './Hero';
-import Info from "./Info";
+import Info from './Info';
 
 const useStyles = makeStyles({
     root: {

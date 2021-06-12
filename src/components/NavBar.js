@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import TabsContainer from './TabsContainer';
 import Imagen from './Imagen';
+import Sidebar from './Sidebar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,11 +59,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
+
+
 const NavBar = () => {
   const classes = useStyles();
   const history = useHistory();
   const [results, setResults] = useState([]);
   let cases;
+
   
   useEffect(() => {
     const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
@@ -83,9 +88,7 @@ const NavBar = () => {
       <AppBar className={classes.root} position="sticky">
         <Toolbar>
           <Hidden mdUp>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
+              <Sidebar />
           </Hidden>
           <Container className={classes.logoContainer} maxWidth="false">
             <a href='https://www.paho.org/es' target="_blank">
@@ -109,6 +112,7 @@ const NavBar = () => {
           </Container>    
         </Toolbar>
       </AppBar>
+     
     </>
   );
 }
