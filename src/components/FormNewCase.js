@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import ModalSuccess from './ModalSuccess';
 
 
 let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
@@ -66,13 +67,21 @@ const FormNewCase = () => {
     const classes = useStyles();
     const [countries, setCountries] = useState([]);
     const [form, setForm] = useState(initialForm); 
+    const [open, setOpen] = React.useState(false);
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
     const handleSubmit = (e) => {
             e.preventDefault(); 
-
+            
             axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', form)
             .then(response => {
-                console.log(response)     
+                console.log(response)
+                setOpen(true)     
             })
 
     }
@@ -267,6 +276,7 @@ const FormNewCase = () => {
                     </form>
                 </CardContent>     
             </Card>
+            <ModalSuccess open={open} handleOpen={handleOpen} handleClose={handleClose}/>
         </Container >
     )
 }
