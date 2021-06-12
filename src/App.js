@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import TotalCasesContext from './context/TotalCasesContext';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   BrowserRouter,
@@ -31,21 +34,38 @@ const useStyles = makeStyles({
 
 const App = () => {
   const classes = useStyles();
+  const [results, setResults] = useState([]);
 
+  useEffect(() => {
+    const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
+    axios.get(searchString)
+         .then(response => {
+          console.log(response)
+          setResults(response.data)
+    })
+  }, []);
+  
+ 
   return (
-    <BrowserRouter>
-      <Container className={classes.container} >
-        <NavBar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/cases" component={Cases} />
-          <Route exact path="/world_data" component={WorldData} />
-          <Route exact path="/report" component={Report} />
-          <Route component={Page404} />
-        </Switch>
-        <Footer />
-      </Container>
-    </BrowserRouter>
+    <>
+      <TotalCasesContext.Provider value={{
+        totalCases: results.length
+      }}> 
+        <BrowserRouter>
+          <Container className={classes.container} >
+            <NavBar />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/cases" component={Cases} />
+              <Route exact path="/world_data" component={WorldData} />
+              <Route exact path="/report" component={Report} />
+              <Route component={Page404} />
+            </Switch>
+            <Footer />
+          </Container>
+        </BrowserRouter>
+      </TotalCasesContext.Provider>
+    </>
   );
 }
 

@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios'
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom'
+import TotalCasesContext from '../context/TotalCasesContext';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import TabsContainer from './TabsContainer';
 import Imagen from './Imagen';
 import Sidebar from './Sidebar';
@@ -58,33 +56,13 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
-
-
 const NavBar = () => {
-  const classes = useStyles();
+  const classes = useStyles(); 
   const history = useHistory();
-  const [results, setResults] = useState([]);
-  let cases;
-
-  
-  useEffect(() => {
-    const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
-    axios.get(searchString)
-         .then(response => {
-          console.log(response)
-          setResults(response.data)
-    })
-  }, []);
-  
-  const setCases = () =>{
-     cases = results.length
-  }
+  const {totalCases} = useContext(TotalCasesContext);
 
   return (
     <>
-    {results && setCases()}
       <AppBar className={classes.root} position="sticky">
         <Toolbar>
           <Hidden mdUp>
@@ -107,7 +85,7 @@ const NavBar = () => {
 
           <Container className={classes.qtyContainer} maxWidth="false">   
               <Typography className={classes.qtyTxtContainer} align="center" variant="body2" gutterBottom>
-                  {`COVID-19:  ${cases} casos`}
+                  {`COVID-19:  ${totalCases} casos`}
               </Typography>
           </Container>    
         </Toolbar>
