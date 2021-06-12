@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -82,7 +81,8 @@ const FormNewCase = () => {
             .then(response => {
                 console.log(response)
                 setOpen(true) 
-                setForm(initialForm)    
+                setForm(initialForm)
+                console.log(form)    
             })
 
     }
@@ -156,6 +156,7 @@ const FormNewCase = () => {
                         <TextField 
                             className={classes.input}
                             onChange={handleChange}
+                            value={form.first_name}
                             id="first_name"
                             required
                             color="secondary"
@@ -172,6 +173,7 @@ const FormNewCase = () => {
                             className={classes.input}
                             onChange={handleChange}
                             id="last_name"
+                            value={form.last_name}
                             required
                             color="secondary"
                             label="Apellido"
@@ -188,6 +190,7 @@ const FormNewCase = () => {
                             type="number"
                             onChange={handleChangeAge}
                             id="age"
+                            value={form.age}
                             readOnly
                             color="secondary"
                             label="Edad"
@@ -210,13 +213,14 @@ const FormNewCase = () => {
                             </InputLabel>
                             <NativeSelect
                                 onChange={handleChangeGenre}
+                                value={form.female}
                                 color="secondary"
                                 inputProps={{
                                     name: 'female',
                                     id: 'female',
                                 }}
                             >
-                                <option value="">None</option>
+                                <option value="false">None</option>
                                 { (genres.map(genre => {
                                     return (
                                         <option value={genre}>{genre}</option>
@@ -233,6 +237,7 @@ const FormNewCase = () => {
                             <NativeSelect
                                 onChange={handleChange}
                                 color="secondary"
+                                value={form.country}
                                 inputProps={{
                                     name: 'country',
                                     id: 'country',
@@ -255,6 +260,7 @@ const FormNewCase = () => {
                             <NativeSelect
                                 onChange={handleChangeLive}
                                 color="secondary"
+                                value={form.live}
                                 inputProps={{
                                     name: 'live',
                                     id: 'live',
