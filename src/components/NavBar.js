@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: "flex-start",
-    maxWidth: 100,
+    minWidth: 100,
     padding: 0,
     cursor: "pointer",
     '&:hover': {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    maxWidth: 300,
+    minWidth: 300,
     padding:5,
     border: "1px solid white",
     borderRadius: 30,
@@ -68,8 +68,8 @@ const NavBar = () => {
           <Hidden mdUp>
               <Sidebar />
           </Hidden>
-          <Container className={classes.logoContainer} maxWidth="false">
-            <a href='https://www.paho.org/es' target="_blank">
+          <Container className={classes.logoContainer} maxWidth={false}>
+            <a href='https://www.paho.org/es' target="_blank" rel="noreferrer" >
               <Imagen 
                 ruta={"https://user-images.githubusercontent.com/63796774/120896551-7c208780-c5f8-11eb-88ba-608f6d9dfe59.png"}
                 ancho={"70"}
@@ -83,7 +83,7 @@ const NavBar = () => {
             <TabsContainer />
           </Hidden>
 
-          <Container className={classes.qtyContainer} maxWidth="false">   
+          <Container className={classes.qtyContainer} maxWidth={false}>   
               <Typography className={classes.qtyTxtContainer} align="center" variant="body2" gutterBottom>
                   {`COVID-19:  ${totalCases} casos`}
               </Typography>

@@ -90,53 +90,29 @@ const FormNewCase = () => {
 
     }
 
-
     const handleSubmit = (e) => {
             e.preventDefault(); 
             parseForm();
             console.log(validForm)
-/* 
+
             axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', validForm)
             .then(response => {
                 console.log(response)
                 setOpen(true) 
                 setForm(initialForm)
                 console.log(form)    
-            }) */
-
+            })
     }
 
     const handleChange = (e) => {
-        console.log(e.target.value)
-
-        setForm({
+          setForm({
             ...form,
             [e.target.id]:e.target.value
         })
     }
-    const handleChangeGenre = (e) => {
-        console.log(e.target.value)
-
-        e.target.value === "Femenino" 
-        ? (
-            setForm({
-                ...form,
-                [e.target.id]: true
-            })
-        )
-        : (
-            setForm({
-                ...form,
-                [e.target.id]: false
-            })
-        )
-    }
-
-
+    
     const handleChangeNumber = (e) => {
-        console.log(e.target.value)
-
-            setForm({
+          setForm({
                 ...form,
                 [e.target.id]: parseInt(e.target.value)
             })
@@ -147,7 +123,6 @@ const FormNewCase = () => {
         const searchString = `https://restcountries.eu/rest/v2/all`
         axios.get(searchString)
             .then(response => {
-                console.log(response.data)
                 setCountries(response.data)
             })
     }, []);
@@ -155,8 +130,6 @@ const FormNewCase = () => {
    
     return (
         <Container className={classes.root} maxWidth="md">
-            {console.log("Render FormNewCase")}
-            {console.log(`Este es el form ahora ${form.female}`)}
             <Card>
                 <CardContent>
                     <Typography className={classes.subtitle} color="secondary" gutterBottom>
@@ -235,7 +208,7 @@ const FormNewCase = () => {
                                 <option value="">None</option>
                                 { (genres.map(genre => {
                                     return (
-                                        <option value={genre}>{genre}</option>
+                                        <option key={genre} value={genre}>{genre}</option>
                                     )
                                 }))}                                      
                             </NativeSelect>
@@ -258,7 +231,7 @@ const FormNewCase = () => {
                                 <option value="">Elija una opción</option>
                                 {countries && (countries.map(country => {
                                     return (
-                                        <option value={country.name}>{country.name}</option>
+                                        <option key={country.name} value={country.name}>{country.name}</option>
                                     )
                                 }))}
                             </NativeSelect>
@@ -273,7 +246,6 @@ const FormNewCase = () => {
                                 onChange={handleChangeNumber}
                                 value={form.live}
                                 color="secondary"
-                                value={form.live}
                                 inputProps={{
                                     name: 'live',
                                     id: 'live',

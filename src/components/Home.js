@@ -17,7 +17,7 @@ const Home = () => {
       }, [])
 
     return (
-        <Container className={classes.root} maxWidth="false">
+        <Container className={classes.root} maxWidth={false}>
             <Hero />
             <Info />
         </Container>

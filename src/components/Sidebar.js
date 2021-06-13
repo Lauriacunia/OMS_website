@@ -14,7 +14,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import GroupIcon from '@material-ui/icons/Group';
 import PublicIcon from '@material-ui/icons/Public';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { StayPrimaryLandscape } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   drawerContainer: {},

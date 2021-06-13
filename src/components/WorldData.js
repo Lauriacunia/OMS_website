@@ -52,7 +52,7 @@ const WorldData = () => {
       
     return (
         
-        <Container className={classes.root} maxWidth="false">
+        <Container className={classes.root} maxWidth={false}>
              <Hidden smDown>
                  <Container className={classes.titleContainer}>
                     <Typography className={classes.title} variant="h2" gutterBottom>
@@ -102,7 +102,7 @@ const WorldData = () => {
                 </Container>
              </Hidden>  
           
-            <Container className={classes.chartContainer}  maxWidth="false">
+            <Container className={classes.chartContainer}  maxWidth={false}>
                 <ChartCountries />
             </Container>
         </Container>
