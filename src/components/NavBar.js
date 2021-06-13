@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     display: 'flex',
+    maxWidth: 100,
     justifyContent: 'flex-start',
     alignItems: "flex-start",
-    minWidth: 100,
     padding: 0,
     cursor: "pointer",
     '&:hover': {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     padding:5,
     border: "1px solid white",
     borderRadius: 30,
-    color: "#ffffff",
+    color: "#87d7be",
   },
   qtyTxtContainer:{
     display: "flex",

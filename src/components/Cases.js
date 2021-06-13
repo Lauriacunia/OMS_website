@@ -14,23 +14,26 @@ const useStyles = makeStyles(theme =>({
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
-        marginBottom: 20,
-        marginTop: 20,
+        padding: 0,
     },
     titleContainer: {
         display: "Flex",
+        alignItems: "center",
         height: 450,
-        backgroundImage: `url(https://user-images.githubusercontent.com/63796774/121225139-9c9e4b00-c85f-11eb-827f-5b3e360e67f1.png)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center-top",
+        width: "100%",
+        padding: 0,
+        backgroundColor: "#87d7be",
         [theme.breakpoints.down('sm')]: {
             height: "300px"
           },
     },
     title: {
         maxWidth: 450,
+        marginLeft: 100,
         [theme.breakpoints.down('sm')]: {
-            maxWidth: 300,
+            maxWidth: 350,
+            marginTop: 0,
+            marginLeft: 50,
           },
     },
 }));

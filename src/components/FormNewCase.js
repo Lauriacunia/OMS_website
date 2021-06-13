@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import Container from '@material-ui/core/Container';
@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ModalSuccess from './ModalSuccess';
+import TotalCasesContext from '../context/TotalCasesContext';
 
 
 let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
@@ -63,6 +64,7 @@ const useStyles = makeStyles({
 
 const FormNewCase = () => {
     const classes = useStyles();
+    const {updateTotalCases, totalCases} = useContext(TotalCasesContext);
     const [countries, setCountries] = useState([]);
     const [form, setForm] = React.useState(initialForm); 
     const [open, setOpen] = React.useState(false);
@@ -98,9 +100,10 @@ const FormNewCase = () => {
             axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', validForm)
             .then(response => {
                 console.log(response)
+                updateTotalCases("")  
                 setOpen(true) 
                 setForm(initialForm)
-                console.log(form)    
+                 
             })
     }
 

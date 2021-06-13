@@ -53,7 +53,7 @@ const ListCountries = () => {
                                     <Chip className={classes.chip}
                                         icon={<PersonPinIcon />}
                                         label={result.name}
-                                        color="primary"
+                                        color="secondary"
                                         variant="outlined"
                                     />
                                 )

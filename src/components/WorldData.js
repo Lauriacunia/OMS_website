@@ -11,17 +11,22 @@ import worldMap from '../assets/world-map.json';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
+        width: "100%",
         flexDirection: "column",
-        justifyContent: "flex-start",
+        
         padding: 0,
     },
     titleContainer: {
         display: "Flex",
-        justifyContent: "flex-end",
         height: 450,
-        backgroundImage: `url(https://user-images.githubusercontent.com/63796774/121233113-ac6e5d00-c868-11eb-9236-5ec77bb0246e.png)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center-top",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        width: "100%",
+        padding: 0,
+        backgroundColor: "#87d7be",
+        [theme.breakpoints.down('sm')]: {
+            height: "300px"
+          },
     },
     titleContainer2: {
         display: "Flex",
@@ -30,7 +35,12 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         maxWidth: 500,
-        margin: "40px 0",
+        marginRight: 200,
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: 350,
+            marginTop: 0,
+            marginRight: 50,
+          },
     },
     animation: {
         display: "flex",
@@ -55,7 +65,7 @@ const WorldData = () => {
         <Container className={classes.root} maxWidth={false}>
              <Hidden smDown>
                  <Container className={classes.titleContainer}>
-                    <Typography className={classes.title} variant="h2" gutterBottom>
+                    <Typography className={classes.title} variant="h2" gutterBottom align="right">
                         Conozca los países con Vigilancia Epidemiológica 
                     </Typography>
                 </Container>

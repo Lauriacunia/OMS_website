@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     description: {
-        color: "#557e76",
+        color: "#069dba",
     },
     btnContainer: {
         display: "flex",
@@ -66,7 +66,7 @@ const CardInfo = ({img, txt, description, ruta}) => {
                 {description}
               </Typography>
               <Container className={classes.btnContainer} >
-                <Button color="primary"
+                <Button color="secondary"
                         size="small" 
                         onClick={() => { history.push(ruta)}} >
                         ver mas

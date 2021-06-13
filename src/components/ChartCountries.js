@@ -26,7 +26,7 @@ const ChartCountries = () => {
 
     const setConfig = () => {
         barColor = results.map(result => {
-            return ('#e5b0a4')
+            return ('#069dba')
           })
 
         data = {
@@ -63,8 +63,7 @@ const ChartCountries = () => {
     }
 
     useEffect(() => {
-        const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`
-        
+        const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries`    
         axios.get(searchString)
           .then(response => {
             console.log(response.data)

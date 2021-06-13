@@ -17,6 +17,7 @@ import Report from './components/Report';
 import WorldData from './components/WorldData';
 import Page404 from './components/Page404';
 import Footer from './components/Footer';
+import LoaderCube from './components/LoaderCube';
 
 const useStyles = makeStyles({
   "@global": {
@@ -24,35 +25,41 @@ const useStyles = makeStyles({
       margin: 0,
       padding: 0,
       backgroundColor: "#f1f7ee",
-    }
+    },
   },
   container: {
     padding: 0,
   },
+
 });
 
 const App = () => {
   const classes = useStyles();
-  const [results, setResults] = useState([]);
+  const [totalCases, setTotalCases] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
     axios.get(searchString)
          .then(response => {
-          console.log(response)
-          setResults(response.data)
+          console.log(response.data.length)
+          setTotalCases(response.data.length)
+          setIsLoading(false)
     })
-  }, []);
+  }, [totalCases]);
   
  
   return (
     <>
       <TotalCasesContext.Provider value={{
-        totalCases: results.length
+        totalCases: totalCases,
+        updateTotalCases: (param) => setTotalCases(param)
       }}> 
         <BrowserRouter>
           <Container className={classes.container} >
             <NavBar />
+            {isLoading && <LoaderCube />}
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/cases" component={Cases} />

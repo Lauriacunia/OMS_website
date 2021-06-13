@@ -53,7 +53,7 @@ const useStyles = makeStyles({
     fontStyle: "italic",
   },
   title2: {
-    color: "#ff63b1",
+    color: "#069dab",
     fontStyle: "italic",
   }, 
   btnContainer: {
@@ -146,7 +146,7 @@ const TableCases = () => {
                 {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                   return (
                     <>
-                      <TableRow style={{ color: !row.live ? 'gray' : '#ff63b1' }}
+                      <TableRow style={{ color: !row.live ? 'gray' : '#069dab' }}
                         hover role="checkbox" tabIndex={-1} key={row.code}>
                         {columns.map((column) => {
                           const value = row[column.id]
