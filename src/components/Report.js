@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -25,13 +25,12 @@ const Report = () => {
 
     return (
         <>
-            <Container className={classes.root} maxWidth="lg">
+            <Container className={classes.root} maxWidth="md">
                 <Typography variant="h4" gutterBottom align="center">
                     Reporte un nuevo caso positivo de COVID-19
                 </Typography>
                 <Typography variant="body1" gutterBottom align="center">
-                    Si usted desea informar un nuevo caso con diagnóstico positivo de COVID-19 
-                    realizado por las autoridades sanitarias de su país de residencia 
+                    Si usted desea colaborar con las estadísticas de la OPS/OMS 
                     le solicitamos complete el siguiente formulario.
                 </Typography>
                 <Typography variant="body1" gutterBottom align="center">

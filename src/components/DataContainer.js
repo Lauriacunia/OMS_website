@@ -21,7 +21,7 @@ const DataContainer = ({ title, description }) => {
     const classes = useStyles();
 
     return (
-        <Container className={classes.textContainer} maxWidth="false">
+        <Container className={classes.textContainer} maxWidth={false}>
              <Hidden smDown>
                 <Typography className={classes.titulo}
                             variant="h1" gutterBottom>

@@ -121,7 +121,7 @@ const TableCases = () => {
 
   return (
      
-     <Container maxWidth="false" className={classes.root}>
+     <Container maxWidth={false} className={classes.root}>
         <div className={classes.switchContainer}>
           <SwitchOrderByAge queryParams={queryParams}
             setQueryParams={setQueryParams} />

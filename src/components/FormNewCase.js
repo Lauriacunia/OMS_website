@@ -8,11 +8,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import ModalSuccess from './ModalSuccess';
 
 
 let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
@@ -23,9 +22,9 @@ const initialForm = {
     first_name: "",
     last_name: "",
     country: "",
-    live: 1,
+    live: "",
     age: 0,
-    female: false,
+    female: "",
 } 
 
 const useStyles = makeStyles({
@@ -65,74 +64,70 @@ const useStyles = makeStyles({
 const FormNewCase = () => {
     const classes = useStyles();
     const [countries, setCountries] = useState([]);
-    const [form, setForm] = useState(initialForm); 
+    const [form, setForm] = React.useState(initialForm); 
+    const [open, setOpen] = React.useState(false);
+    let validForm = {};
 
-    const handleSubmit = (e) => {
-            e.preventDefault(); 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const parseForm = () =>{
 
-            axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', form)
-            .then(response => {
-                console.log(response)     
-            })
+        form.female === "Femenino" 
+        ? ( validForm = {
+                ...form,
+                female: true
+            }
+        )
+        : ( validForm = {
+            ...form,
+            female: false
+        }
+     )
 
     }
 
+    const handleSubmit = (e) => {
+            e.preventDefault(); 
+            parseForm();
+            console.log(validForm)
+
+            axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', validForm)
+            .then(response => {
+                console.log(response)
+                setOpen(true) 
+                setForm(initialForm)
+                console.log(form)    
+            })
+    }
+
     const handleChange = (e) => {
-        setForm({
+          setForm({
             ...form,
             [e.target.id]:e.target.value
         })
     }
-    const handleChangeGenre = (e) => {
-        e.target.value === "Femenino" 
-        ? (
-            setForm({
-                ...form,
-                [e.target.id]: true
-            })
-        )
-        : (
-            setForm({
-                ...form,
-                [e.target.id]: false
-            })
-        )
-    }
-
-    const handleChangeLive = (e) => {
-        e.target.value === "si" 
-        ? (
-            setForm({
-                ...form,
-                [e.target.id]: 1
-            })
-        )
-        : (
-            setForm({
-                ...form,
-                [e.target.id]: 0
-            })
-        )
-    }
-
-    const handleChangeAge = (e) => {
-            setForm({
+    
+    const handleChangeNumber = (e) => {
+          setForm({
                 ...form,
                 [e.target.id]: parseInt(e.target.value)
             })
     }
+ 
 
     useEffect(() => {
         const searchString = `https://restcountries.eu/rest/v2/all`
         axios.get(searchString)
             .then(response => {
-                console.log(response.data)
                 setCountries(response.data)
             })
     }, []);
 
    
-    
     return (
         <Container className={classes.root} maxWidth="md">
             <Card>
@@ -146,6 +141,7 @@ const FormNewCase = () => {
                         <TextField 
                             className={classes.input}
                             onChange={handleChange}
+                            value={form.first_name}
                             id="first_name"
                             required
                             color="secondary"
@@ -162,6 +158,7 @@ const FormNewCase = () => {
                             className={classes.input}
                             onChange={handleChange}
                             id="last_name"
+                            value={form.last_name}
                             required
                             color="secondary"
                             label="Apellido"
@@ -176,8 +173,9 @@ const FormNewCase = () => {
 
                         <TextField className={classes.input}
                             type="number"
-                            onChange={handleChangeAge}
+                            onChange={handleChangeNumber}
                             id="age"
+                            value={form.age}
                             readOnly
                             color="secondary"
                             label="Edad"
@@ -199,7 +197,8 @@ const FormNewCase = () => {
                                 Género
                             </InputLabel>
                             <NativeSelect
-                                onChange={handleChangeGenre}
+                                onChange={handleChange}
+                                value={form.female}
                                 color="secondary"
                                 inputProps={{
                                     name: 'female',
@@ -209,9 +208,9 @@ const FormNewCase = () => {
                                 <option value="">None</option>
                                 { (genres.map(genre => {
                                     return (
-                                        <option value={genre}>{genre}</option>
+                                        <option key={genre} value={genre}>{genre}</option>
                                     )
-                                }))}         
+                                }))}                                      
                             </NativeSelect>
                         </FormControl>
 
@@ -223,6 +222,7 @@ const FormNewCase = () => {
                             <NativeSelect
                                 onChange={handleChange}
                                 color="secondary"
+                                value={form.country}
                                 inputProps={{
                                     name: 'country',
                                     id: 'country',
@@ -231,7 +231,7 @@ const FormNewCase = () => {
                                 <option value="">Elija una opción</option>
                                 {countries && (countries.map(country => {
                                     return (
-                                        <option value={country.name}>{country.name}</option>
+                                        <option key={country.name} value={country.name}>{country.name}</option>
                                     )
                                 }))}
                             </NativeSelect>
@@ -243,7 +243,8 @@ const FormNewCase = () => {
                                 ¿ El paciente vive ?
                             </InputLabel>
                             <NativeSelect
-                                onChange={handleChangeLive}
+                                onChange={handleChangeNumber}
+                                value={form.live}
                                 color="secondary"
                                 inputProps={{
                                     name: 'live',
@@ -251,8 +252,8 @@ const FormNewCase = () => {
                                 }}
                             >   
                                 <option value="">Elija una opción</option>
-                                <option value="si">SI</option>
-                                <option value="no">NO</option>
+                                <option value={1}>SI</option>
+                                <option value={0}>NO</option>
                                 
                             </NativeSelect>
                         </FormControl>
@@ -267,6 +268,7 @@ const FormNewCase = () => {
                     </form>
                 </CardContent>     
             </Card>
+            <ModalSuccess open={open} handleOpen={handleOpen} handleClose={handleClose}/>
         </Container >
     )
 }

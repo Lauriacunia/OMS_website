@@ -66,7 +66,8 @@ const CardInfo = ({img, txt, description, ruta}) => {
                 {description}
               </Typography>
               <Container className={classes.btnContainer} >
-                <Button color="primary" size="small" 
+                <Button color="primary"
+                        size="small" 
                         onClick={() => { history.push(ruta)}} >
                         ver mas
                 </Button>

@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       transform: `scale(1.1)`
     },
-    color: "#ffffff",
+    color: "inherit",
   }
 }));
 
@@ -84,7 +84,7 @@ const TabsContainer = () => {
           variant="scrollable"
           scrollButtons="on"
           indicatorColor="secondary"
-          textColor="#ffffff"
+          textColor="secondary"
           aria-label="scrollable force tabs example"
         >
           <Tab className={classes.tab}

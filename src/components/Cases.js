@@ -43,16 +43,16 @@ const Cases = () => {
       }, [])
 
     return (
-        <Container className={classes.root} maxWidth="false"> 
+        <Container className={classes.root} maxWidth={false}> 
              <Hidden smDown>
-                 <Container className={classes.titleContainer} maxWidth="false" >
+                 <Container className={classes.titleContainer} maxWidth={false} >
                      <Typography  className={classes.title} variant="h2" gutterBottom>
                      Conozca el listado de casos positivos registrados de COVID-19
                      </Typography>
                  </Container>
              </Hidden>
              <Hidden mdUp>
-                 <Container className={classes.titleContainer} maxWidth="false" >
+                 <Container className={classes.titleContainer} maxWidth={false} >
                      <Typography  className={classes.title} variant="h3" gutterBottom>
                      Conozca el listado de casos positivos registrados de COVID-19
                      </Typography>

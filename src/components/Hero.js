@@ -37,12 +37,13 @@ const useStyles = makeStyles(theme => ({
 const Hero = () => {
     const classes = useStyles();
     return (
-        <Container className={classes.root} maxWidth="false"> 
-            <Container className={classes.overlay} maxWidth="false"></Container>
-            <Container className={classes.dataContainer} maxWidth="false">
-                <DataContainer title={"Situación Epidemiológica Coronavirus"}
-                               description={`Conozca las novedades del avance de la pandemia de COVID-19`} />
-            </Container>
+        <Container className={classes.root} maxWidth={false}> 
+            <div className={classes.overlay} ></div>
+                <Container className={classes.dataContainer} maxWidth={false}>
+                    <DataContainer title={"Situación Epidemiológica Coronavirus"}
+                                description={`Conozca las novedades del avance de la pandemia de COVID-19`} />
+                </Container>
+            
         </Container>
     )
 }

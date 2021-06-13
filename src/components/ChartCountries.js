@@ -26,7 +26,7 @@ const ChartCountries = () => {
 
     const setConfig = () => {
         barColor = results.map(result => {
-            return ('#fff952')
+            return ('#e5b0a4')
           })
 
         data = {
