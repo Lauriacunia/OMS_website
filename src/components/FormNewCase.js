@@ -64,7 +64,7 @@ const useStyles = makeStyles({
 
 const FormNewCase = () => {
     const classes = useStyles();
-    const { updateTotalCases, totalCases } = useContext(TotalCasesContext);
+    const { updateTotalCases } = useContext(TotalCasesContext);
     const [countries, setCountries] = useState([]);
     const [form, setForm] = React.useState(initialForm);
     const [open, setOpen] = React.useState(false);
