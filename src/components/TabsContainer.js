@@ -73,28 +73,28 @@ const TabsContainer = () => {
     <div>
       <AppBar position="static" className={classes.root}>
         <Tabs className={classes.tabs}
-              value={value}
-              onChange={handleChange}
-              aria-label="simple tabs example"
-              indicatorColor="primary"
-              textColor="primary"
-               >
+          value={value}
+          onChange={handleChange}
+          aria-label="simple tabs example"
+          indicatorColor="primary"
+          textColor="primary"
+        >
           <Tab className={classes.tabs}
-               onClick={() => { history.push(`/`) }}
-               label="home"
-               {...a11yProps(0)} />
+            onClick={() => { history.push(`/`) }}
+            label="home"
+            {...a11yProps(0)} />
           <Tab className={classes.tabs}
-               onClick={() => { history.push(`/cases`) }}
-               label="seguimiento" 
-               {...a11yProps(1)} />
+            onClick={() => { history.push(`/cases`) }}
+            label="seguimiento"
+            {...a11yProps(1)} />
           <Tab className={classes.tabs}
-               onClick={() => { history.push(`/world_data`) }}
-               label="estadísticas " 
-               {...a11yProps(2)} />
+            onClick={() => { history.push(`/world_data`) }}
+            label="estadísticas "
+            {...a11yProps(2)} />
           <Tab className={classes.tabs}
-               onClick={() => { history.push(`/report`) }}
-               label="reporte" 
-               {...a11yProps(3)} />
+            onClick={() => { history.push(`/report`) }}
+            label="reporte"
+            {...a11yProps(3)} />
         </Tabs>
       </AppBar>
     </div>
@@ -103,27 +103,3 @@ const TabsContainer = () => {
 
 export default TabsContainer
 
-
-
-       {/* <Tab className={classes.tab}
-            onClick={() => { history.push(`/`) }}
-            label="inicio"
-            icon={<HomeIcon />}
-            {...a11yProps(0)} />
-          <Tab className={classes.tab}
-            onClick={() => { history.push(`/cases`) }}
-            label="casos"
-            icon={<GroupIcon />}
-            {...a11yProps(1)} />
-          <Tab className={classes.tab}
-            onClick={() => { history.push(`/world_data`) }}
-            label="estadísticas "
-            icon={<PublicIcon />}
-            {...a11yProps(2)} />
-          <Tab className={classes.tab}
-            onClick={() => { history.push(`/report`) }}
-            label="reporte un caso"
-            icon={<PersonAddIcon />}
-            {...a11yProps(3)} /> */}
-        {/* </Tabs> */}
-  

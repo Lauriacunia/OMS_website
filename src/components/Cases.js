@@ -8,7 +8,7 @@ import ChartPandemicEvolution from "./ChartPandemicEvolution";
 import Animation from './Animation';
 import people from '../assets/people.json';
 
-const useStyles = makeStyles(theme =>({
+const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
         flexDirection: "column",
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme =>({
         backgroundColor: "#87d7be",
         [theme.breakpoints.down('sm')]: {
             height: "300px"
-          },
+        },
     },
     title: {
         maxWidth: 450,
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme =>({
             maxWidth: 350,
             marginTop: 0,
             marginLeft: 50,
-          },
+        },
     },
 }));
 
@@ -43,78 +43,78 @@ const Cases = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
 
     return (
-        <Container className={classes.root} maxWidth={false}> 
-             <Hidden smDown>
-                 <Container className={classes.titleContainer} maxWidth={false} >
-                     <Typography  className={classes.title} variant="h2" gutterBottom>
-                     Conozca el listado de casos positivos registrados de COVID-19
-                     </Typography>
-                 </Container>
-             </Hidden>
-             <Hidden mdUp>
-                 <Container className={classes.titleContainer} maxWidth={false} >
-                     <Typography  className={classes.title} variant="h3" gutterBottom>
-                     Conozca el listado de casos positivos registrados de COVID-19
-                     </Typography>
-                 </Container>
-             </Hidden>
+        <Container className={classes.root} maxWidth={false}>
+            <Hidden smDown>
+                <Container className={classes.titleContainer} maxWidth={false} >
+                    <Typography className={classes.title} variant="h2" gutterBottom>
+                        Conozca el listado de casos positivos registrados de COVID-19
+                    </Typography>
+                </Container>
+            </Hidden>
+            <Hidden mdUp>
+                <Container className={classes.titleContainer} maxWidth={false} >
+                    <Typography className={classes.title} variant="h3" gutterBottom>
+                        Conozca el listado de casos positivos registrados de COVID-19
+                    </Typography>
+                </Container>
+            </Hidden>
 
-             <Hidden smDown>
+            <Hidden smDown>
                 <Container maxWidth="md">
                     <Animation height={"auto"} width={500} myAnimation={people} />
                 </Container>
-             </Hidden>
-             <Hidden mdUp>
+            </Hidden>
+            <Hidden mdUp>
                 <Container maxWidth="xs">
                     <Animation height={"auto"} width={300} myAnimation={people} />
                 </Container>
-             </Hidden>
+            </Hidden>
 
-             <Hidden smDown>
+            <Hidden smDown>
                 <Container maxWidth="md">
                     <TableCases />
                 </Container>
-             </Hidden>
+            </Hidden>
 
-             <Hidden mdUp>
+            <Hidden mdUp>
                 <Container maxWidth="sm">
                     <TableCases />
                 </Container>
-             </Hidden>
+            </Hidden>
 
-             <Hidden smDown>
+            <Hidden smDown>
                 <Container maxWidth="md">
-                    <Typography  className={classes.title} variant="h2" gutterBottom>
+                    <Typography className={classes.title} variant="h2" gutterBottom>
                         Conozca la incidencia de casos positivos COVID-19 de éste mes
                     </Typography>
                 </Container>
-             </Hidden>
+            </Hidden>
 
-             <Hidden mdUp>
+            <Hidden mdUp>
                 <Container maxWidth="sm">
-                    <Typography  className={classes.title} variant="h3" gutterBottom>
+                    <Typography className={classes.title} variant="h3" gutterBottom>
                         Conozca la incidencia de casos positivos COVID-19 de éste mes
-                    </Typography> 
+                    </Typography>
                 </Container>
-             </Hidden>  
+            </Hidden>
 
-             <Hidden smDown>
-                 <Container maxWidth="md">
+            <Hidden smDown>
+                <Container maxWidth="md">
                     <ChartPandemicEvolution />
-                 </Container>
-             </Hidden>
-             <Hidden mdUp>
-                 <Container maxWidth="sm">
+                </Container>
+            </Hidden>
+            <Hidden mdUp>
+                <Container maxWidth="sm">
                     <ChartPandemicEvolution />
-                 </Container>
-             </Hidden>
-            
-            
+                </Container>
+            </Hidden>
 
-                
+
+
+
         </Container>
     )
 }

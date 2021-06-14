@@ -1,6 +1,5 @@
-import React, { useState, useEffect} from 'react';
-import axios from 'axios'
-import TotalCasesContext from './context/TotalCasesContext';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   BrowserRouter,
@@ -18,6 +17,7 @@ import WorldData from './components/WorldData';
 import Page404 from './components/Page404';
 import Footer from './components/Footer';
 import LoaderCube from './components/LoaderCube';
+import TotalCasesContext from './context/TotalCasesContext';
 
 const useStyles = makeStyles({
   "@global": {
@@ -42,20 +42,20 @@ const App = () => {
     setIsLoading(true)
     const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected`
     axios.get(searchString)
-         .then(response => {
-          console.log(response.data.length)
-          setTotalCases(response.data.length)
-          setIsLoading(false)
-    })
+      .then(response => {
+        console.log(response.data.length)
+        setTotalCases(response.data.length)
+        setIsLoading(false)
+      })
   }, [totalCases]);
-  
- 
+
+
   return (
     <>
       <TotalCasesContext.Provider value={{
         totalCases: totalCases,
         updateTotalCases: (param) => setTotalCases(param)
-      }}> 
+      }}>
         <BrowserRouter>
           <Container className={classes.container} >
             <NavBar />

@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minWidth: "50vw", 
+    minWidth: "50vw",
     marginBottom: 20,
     marginTop: 20,
   },
@@ -24,7 +24,7 @@ const ChartPandemicEvolution = () => {
   let currentMonth = "";
   let currentYear = 2021;
   let daysOfTheMonth = 31;
-  let onlyDatesOfCurrentMonth =[];
+  let onlyDatesOfCurrentMonth = [];
   let allDaysOfTheMonth = [];
   let pandemicEvolution = [];
   let xAxis = [];
@@ -35,37 +35,37 @@ const ChartPandemicEvolution = () => {
   const isLeapYear = () => {
     let today = new Date();
     currentYear = today.getFullYear();
-    return (currentYear % 400 === 0) ? true : 
-  			   (currentYear % 100 === 0) ? false : 
-  			    currentYear % 4 === 0;
+    return (currentYear % 400 === 0) ? true :
+      (currentYear % 100 === 0) ? false :
+        currentYear % 4 === 0;
   }
 
-  const getQtyDaysOfMonth = () =>{
+  const getQtyDaysOfMonth = () => {
     currentMonthNumber === 2 && (
-       isLeapYear
-       ? daysOfTheMonth = 28
-       : daysOfTheMonth = 29
+      isLeapYear
+        ? daysOfTheMonth = 28
+        : daysOfTheMonth = 29
     )
     currentMonthNumber === 3 && (daysOfTheMonth = 30)
     currentMonthNumber === 5 && (daysOfTheMonth = 30)
     currentMonthNumber === 8 && (daysOfTheMonth = 30)
-    currentMonthNumber === 10 && (daysOfTheMonth = 30)    
+    currentMonthNumber === 10 && (daysOfTheMonth = 30)
   }
 
-  const fillXAxis = () =>{
-    for (let i = 0; i < daysOfTheMonth ; i++) {
-          xAxis.push(i+1);      
+  const fillXAxis = () => {
+    for (let i = 0; i < daysOfTheMonth; i++) {
+      xAxis.push(i + 1);
     }
   }
 
   const getCurrentMonth = () => {
-     let today = new Date();
-     let meses = ["Enero", "Febrero", "Marzo", "Abril",
-                   "Mayo", "Junio", "Julio", "Agosto", 
-                   "Septiembre", "Octubre", "Noviembre", 
-                   "Diciembre"];
-     currentMonthNumber = today.getMonth();
-     currentMonth = meses[currentMonthNumber];   
+    let today = new Date();
+    let meses = ["Enero", "Febrero", "Marzo", "Abril",
+      "Mayo", "Junio", "Julio", "Agosto",
+      "Septiembre", "Octubre", "Noviembre",
+      "Diciembre"];
+    currentMonthNumber = today.getMonth();
+    currentMonth = meses[currentMonthNumber];
   }
 
   const filterCurrentMonth = () => {
@@ -93,12 +93,12 @@ const ChartPandemicEvolution = () => {
 
   const fillYAxis = () => {
     let pandemicEvolutionII = xAxis.reduce((a, b) => (a[b] ? a[b] += 0 : a[b] = 0, a), {})
-    let final = {...pandemicEvolutionII,...pandemicEvolution }
-     for (const parametro in final) {
-       yAxis.push(final[parametro])
+    let final = { ...pandemicEvolutionII, ...pandemicEvolution }
+    for (const parametro in final) {
+      yAxis.push(final[parametro])
     }
   }
- 
+
   const drawChart = () => {
     getCurrentMonth();
     getQtyDaysOfMonth();
@@ -113,7 +113,7 @@ const ChartPandemicEvolution = () => {
   }
 
   const setConfig = () => {
-    data = { 
+    data = {
       labels: xAxis,
       datasets: [
         {
@@ -151,7 +151,7 @@ const ChartPandemicEvolution = () => {
     <div className={classes.root} >
       {results && drawChart()}
       {results && fillChart()}
-      {results && setConfig()} 
+      {results && setConfig()}
       <Line data={data} options={options} />
     </div>
   )

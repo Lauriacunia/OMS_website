@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Report = () => {
     const classes = useStyles();
-    
+
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
 
     return (
         <>
@@ -30,7 +30,7 @@ const Report = () => {
                     Reporte un nuevo caso positivo de COVID-19
                 </Typography>
                 <Typography variant="body1" gutterBottom align="center">
-                    Si usted desea colaborar con las estadísticas de la OPS/OMS 
+                    Si usted desea colaborar con las estadísticas de la OPS/OMS
                     le solicitamos complete el siguiente formulario.
                 </Typography>
                 <Typography variant="body1" gutterBottom align="center">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,8 +16,8 @@ import TotalCasesContext from '../context/TotalCasesContext';
 
 
 let genres = ["Femenino", "Masculino", "Intersex", "Intersexual",
-            "Androginx", "Trans Femenino", "Trans Masculino", 
-            "Ninguno", "Otro", "Prefiero no decirlo"]
+    "Androginx", "Trans Femenino", "Trans Masculino",
+    "Ninguno", "Otro", "Prefiero no decirlo"]
 
 const initialForm = {
     first_name: "",
@@ -26,7 +26,7 @@ const initialForm = {
     live: "",
     age: 0,
     female: "",
-} 
+}
 
 const useStyles = makeStyles({
     root: {
@@ -64,9 +64,9 @@ const useStyles = makeStyles({
 
 const FormNewCase = () => {
     const classes = useStyles();
-    const {updateTotalCases, totalCases} = useContext(TotalCasesContext);
+    const { updateTotalCases, totalCases } = useContext(TotalCasesContext);
     const [countries, setCountries] = useState([]);
-    const [form, setForm] = React.useState(initialForm); 
+    const [form, setForm] = React.useState(initialForm);
     const [open, setOpen] = React.useState(false);
     let validForm = {};
 
@@ -76,51 +76,51 @@ const FormNewCase = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    const parseForm = () =>{
+    const parseForm = () => {
 
-        form.female === "Femenino" 
-        ? ( validForm = {
+        form.female === "Femenino"
+            ? (validForm = {
                 ...form,
                 female: true
             }
-        )
-        : ( validForm = {
-            ...form,
-            female: false
-        }
-     )
+            )
+            : (validForm = {
+                ...form,
+                female: false
+            }
+            )
 
     }
 
     const handleSubmit = (e) => {
-            e.preventDefault(); 
-            parseForm();
-            console.log(validForm)
+        e.preventDefault();
+        parseForm();
+        console.log(validForm)
 
-            axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', validForm)
+        axios.post('https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected', validForm)
             .then(response => {
                 console.log(response)
-                updateTotalCases("")  
-                setOpen(true) 
+                updateTotalCases("")
+                setOpen(true)
                 setForm(initialForm)
-                 
+
             })
     }
 
     const handleChange = (e) => {
-          setForm({
+        setForm({
             ...form,
-            [e.target.id]:e.target.value
+            [e.target.id]: e.target.value
         })
     }
-    
+
     const handleChangeNumber = (e) => {
-          setForm({
-                ...form,
-                [e.target.id]: parseInt(e.target.value)
-            })
+        setForm({
+            ...form,
+            [e.target.id]: parseInt(e.target.value)
+        })
     }
- 
+
 
     useEffect(() => {
         const searchString = `https://restcountries.eu/rest/v2/all`
@@ -130,7 +130,7 @@ const FormNewCase = () => {
             })
     }, []);
 
-   
+
     return (
         <Container className={classes.root} maxWidth="md">
             <Card>
@@ -139,9 +139,9 @@ const FormNewCase = () => {
                         Datos Personales
                     </Typography>
                     <form className={classes.form}
-                          onSubmit={handleSubmit}
-                          autoComplete="off">
-                        <TextField 
+                        onSubmit={handleSubmit}
+                        autoComplete="off">
+                        <TextField
                             className={classes.input}
                             onChange={handleChange}
                             value={form.first_name}
@@ -157,7 +157,7 @@ const FormNewCase = () => {
                                 shrink: true,
                             }}
                         />
-                        <TextField 
+                        <TextField
                             className={classes.input}
                             onChange={handleChange}
                             id="last_name"
@@ -193,7 +193,7 @@ const FormNewCase = () => {
                             }}
                         />
 
-                        <FormControl 
+                        <FormControl
                             className={classes.input}
                             color="secondary">
                             <InputLabel shrink htmlFor="select genre">
@@ -209,11 +209,11 @@ const FormNewCase = () => {
                                 }}
                             >
                                 <option value="">None</option>
-                                { (genres.map(genre => {
+                                {(genres.map(genre => {
                                     return (
                                         <option key={genre} value={genre}>{genre}</option>
                                     )
-                                }))}                                      
+                                }))}
                             </NativeSelect>
                         </FormControl>
 
@@ -253,25 +253,25 @@ const FormNewCase = () => {
                                     name: 'live',
                                     id: 'live',
                                 }}
-                            >   
+                            >
                                 <option value="">Elija una opción</option>
                                 <option value={1}>SI</option>
                                 <option value={0}>NO</option>
-                                
+
                             </NativeSelect>
                         </FormControl>
                         <div className={classes.btnContainer}>
-                            <Button  type="submit" 
-                             variant="contained"
-                             size="large" 
-                             color="secondary"
-                             startIcon={<CloudUploadIcon />}
-                             >ENVIAR</Button>
+                            <Button type="submit"
+                                variant="contained"
+                                size="large"
+                                color="secondary"
+                                startIcon={<CloudUploadIcon />}
+                            >ENVIAR</Button>
                         </div>
                     </form>
-                </CardContent>     
+                </CardContent>
             </Card>
-            <ModalSuccess open={open} handleOpen={handleOpen} handleClose={handleClose}/>
+            <ModalSuccess open={open} handleOpen={handleOpen} handleClose={handleClose} />
         </Container >
     )
 }
