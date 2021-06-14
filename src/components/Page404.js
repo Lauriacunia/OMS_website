@@ -3,9 +3,10 @@ import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Animation from './Animation';
 import page404 from '../assets/page404.json';
-import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles({
     root: {
@@ -15,10 +16,10 @@ const useStyles = makeStyles({
     },
     text: {
         display: "flex",
-        position: "relative",       
+        position: "relative",
         flexDirection: "column",
         right: 100,
-        maxWidth: 350,    
+        maxWidth: 350,
     },
 
 });
@@ -29,7 +30,7 @@ const Page404 = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
 
     return (
         <div>
@@ -39,17 +40,17 @@ const Page404 = () => {
                 </Container>
                 <div className={classes.text} >
                     <Typography className={classes.text} variant="h4" gutterBottom>
-                            Lo sentimos, no pudimos hallar la pagina solicitada.
+                        Lo sentimos, no pudimos hallar la pagina solicitada.
                     </Typography>
-                    <Button color="secondary" size="small" 
-                            onClick={() => { history.push("/")}} >
-                            volver al inicio
-                    </Button> 
-                </div> 
+                    <Button color="secondary" size="small"
+                        onClick={() => { history.push("/") }} >
+                        volver al inicio
+                    </Button>
+                </div>
             </div>
-            
-       </div>
-        
+
+        </div>
+
     )
 }
 

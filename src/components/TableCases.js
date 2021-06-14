@@ -10,9 +10,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import SwitchOrderByAge from './SwitchOrderByAge';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Typography from '@material-ui/core/Typography';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import SwitchOrderByAge from './SwitchOrderByAge';
 
 
 const columns = [
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "flex-end",
     minWidth: '70vw',
-  }, 
+  },
   switchContainer: {
     display: "flex",
     justifyContent: "flex-end",
@@ -53,9 +53,9 @@ const useStyles = makeStyles({
     fontStyle: "italic",
   },
   title2: {
-    color: "#ff63b1",
+    color: "#069dab",
     fontStyle: "italic",
-  }, 
+  },
   btnContainer: {
     display: "flex",
     justifyContent: "flex-end"
@@ -104,8 +104,8 @@ const TableCases = () => {
     const searchString = `https://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected${queryParams}`
 
     axios.get(searchString)
-         .then(response => {
-          let newRows = response.data.map(result => {
+      .then(response => {
+        let newRows = response.data.map(result => {
           let genreStr = JSON.stringify(result.female);
           genreStr === "true"
             ? genreStr = "Femenino"
@@ -120,82 +120,82 @@ const TableCases = () => {
   }, [queryParams]);
 
   return (
-     
-     <Container maxWidth={false} className={classes.root}>
-        <div className={classes.switchContainer}>
-          <SwitchOrderByAge queryParams={queryParams}
-            setQueryParams={setQueryParams} />
-        </div>
-        <Paper className={classes.tableContainer}>
-          <TableContainer>
-            <Table id="tableToXls" stickyHeader aria-label="sticky table">
-              <TableHead >
-                <TableRow >
-                  {columns.map((column) => (
-                    <StyledTableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </StyledTableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  return (
-                    <>
-                      <TableRow style={{ color: !row.live ? 'gray' : '#ff63b1' }}
-                        hover role="checkbox" tabIndex={-1} key={row.code}>
-                        {columns.map((column) => {
-                          const value = row[column.id]
-                          return (
-                            <TableCell style={{ color: "inherit" }}
-                              key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number' ? column.format(value) : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    </>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        </Paper>
-        <div className={classes.textContainer}>
-          <Typography className={classes.title1}
-            variant="body2" gutterBottom>
-            Pacientes fallecidos
-          </Typography>
-          <Typography className={classes.title2}
-            variant="body2" gutterBottom>
-            Pacientes vivos
-          </Typography>
-        </div>
-        <div className={classes.btnContainer}>
-          <ReactHTMLTableToExcel
-            id="table-xls-button"
-            className={classes.downloadTableBtn}
-            table="tableToXls"
-            filename="tablaCasosPositivosCovid-19"
-            sheet="tablexls"
-            buttonText="Descargar página actual en Excel" />
-        </div>
-      </Container>
-     
-    );
+
+    <Container maxWidth={false} className={classes.root}>
+      <div className={classes.switchContainer}>
+        <SwitchOrderByAge queryParams={queryParams}
+          setQueryParams={setQueryParams} />
+      </div>
+      <Paper className={classes.tableContainer}>
+        <TableContainer>
+          <Table id="tableToXls" stickyHeader aria-label="sticky table">
+            <TableHead >
+              <TableRow >
+                {columns.map((column) => (
+                  <StyledTableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <>
+                    <TableRow style={{ color: !row.live ? 'gray' : '#069dab' }}
+                      hover role="checkbox" tabIndex={-1} key={row.code}>
+                      {columns.map((column) => {
+                        const value = row[column.id]
+                        return (
+                          <TableCell style={{ color: "inherit" }}
+                            key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <div className={classes.textContainer}>
+        <Typography className={classes.title1}
+          variant="body2" gutterBottom>
+          Pacientes fallecidos
+        </Typography>
+        <Typography className={classes.title2}
+          variant="body2" gutterBottom>
+          Pacientes vivos
+        </Typography>
+      </div>
+      <div className={classes.btnContainer}>
+        <ReactHTMLTableToExcel
+          id="table-xls-button"
+          className={classes.downloadTableBtn}
+          table="tableToXls"
+          filename="tablaCasosPositivosCovid-19"
+          sheet="tablexls"
+          buttonText="Descargar página actual en Excel" />
+      </div>
+    </Container>
+
+  );
 }
 
 export default TableCases

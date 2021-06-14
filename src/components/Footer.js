@@ -7,38 +7,38 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 
 const useStyles = makeStyles((theme) => ({
-   footerContainer: {
-       display: "flex",
-       flexDirection: "column",
-       justifyContent: "center",
-       alignItems: "center",
-       height: 200,
-       marginTop: 50,
-       backgroundColor: "black",
-       color: "white",
-   },
-   iconsContainer: {
+    footerContainer: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 200,
+        marginTop: 50,
+        backgroundColor: "black",
+        color: "white",
+    },
+    iconsContainer: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         marginTop: 10,
         color: "white",
         fontSize: 20,
-   },
-   icon1 : {
-     fontSize: 40,
-   },
-   icon2 : {
-    fontSize: 50,
-  },
-  
-  }));
+    },
+    icon1: {
+        fontSize: 40,
+    },
+    icon2: {
+        fontSize: 50,
+    },
+
+}));
 
 const Footer = () => {
     const classes = useStyles();
     return (
         <div className={classes.footerContainer}>
-             <Typography
+            <Typography
                 variant="h6" gutterBottom>
                 {"Sitio realizado por Laura Acuña"}
             </Typography>
@@ -48,18 +48,18 @@ const Footer = () => {
             </Typography>
             <div className={classes.iconsContainer}>
                 <a href="https://github.com/Lauriacunia" target="_blank" rel="noreferrer">
-                    <IconButton color="secondary" 
-                                aria-label="add an alarm">
+                    <IconButton color="primary"
+                        aria-label="add an alarm">
                         <GitHubIcon className={classes.icon1} />
                     </IconButton>
                 </a>
                 <a href="https://www.linkedin.com/in/lauriacunia/" target="_blank" rel="noreferrer">
-                   <IconButton color="secondary" 
-                               aria-label="add an alarm">
+                    <IconButton color="primary"
+                        aria-label="add an alarm">
                         <LinkedInIcon className={classes.icon2} />
-                   </IconButton> 
+                    </IconButton>
                 </a>
-                
+
             </div>
         </div>
     )

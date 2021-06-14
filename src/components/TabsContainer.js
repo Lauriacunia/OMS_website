@@ -7,20 +7,17 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import HomeIcon from '@material-ui/icons/Home';
-import GroupIcon from '@material-ui/icons/Group';
-import PublicIcon from '@material-ui/icons/Public';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-const TabPanel = (props) => {
+
+function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`scrollable-force-tabpanel-${index}`}
-      aria-labelledby={`scrollable-force-tab-${index}`}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -38,78 +35,71 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-const a11yProps = (index) => {
+function a11yProps(index) {
   return {
-    id: `scrollable-force-tab-${index}`,
-    'aria-controls': `scrollable-force-tabpanel-${index}`,
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
+
   root: {
     flexGrow: 1,
-    width: '100%',
     backgroundColor: "transparent",
-    color: "#ffffff",
+    color: "#fff"
   },
   tabs: {
+    color: "#fff",
     backgroundColor: "transparent",
-    paddingBottom: 5,
-   
   },
-  tab: { 
-    fontSize: 11,
-    '&:hover': {
-      transform: `scale(1.1)`
-    },
-    color: "inherit",
+  tab: {
+    color: "#fff",
+    backgroundColor: "transparent",
   }
+
 }));
 
 const TabsContainer = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
   const history = useHistory();
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar className={classes.tabs} position="static" color="primary">
-        <Tabs
+    <div>
+      <AppBar position="static" className={classes.root}>
+        <Tabs className={classes.tabs}
           value={value}
           onChange={handleChange}
-          variant="scrollable"
-          scrollButtons="on"
-          indicatorColor="secondary"
-          textColor="secondary"
-          aria-label="scrollable force tabs example"
+          aria-label="simple tabs example"
+          indicatorColor="primary"
+          textColor="primary"
         >
-          <Tab className={classes.tab}
+          <Tab className={classes.tabs}
             onClick={() => { history.push(`/`) }}
-            label="inicio"
-            icon={<HomeIcon />}
+            label="home"
             {...a11yProps(0)} />
-          <Tab className={classes.tab}
+          <Tab className={classes.tabs}
             onClick={() => { history.push(`/cases`) }}
-            label="casos"
-            icon={<GroupIcon />}
+            label="seguimiento"
             {...a11yProps(1)} />
-          <Tab className={classes.tab}
+          <Tab className={classes.tabs}
             onClick={() => { history.push(`/world_data`) }}
             label="estadísticas "
-            icon={<PublicIcon />}
             {...a11yProps(2)} />
-          <Tab className={classes.tab}
+          <Tab className={classes.tabs}
             onClick={() => { history.push(`/report`) }}
-            label="reporte un caso"
-            icon={<PersonAddIcon />}
+            label="reporte"
             {...a11yProps(3)} />
         </Tabs>
       </AppBar>
     </div>
   );
 }
+
 export default TabsContainer
+

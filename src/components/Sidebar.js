@@ -30,65 +30,65 @@ const Sidebar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const classes = useStyles();
   const history = useHistory();
-  
-      return (
-        <>
-          <Drawer
-            anchor='left'
-            classes={{ paper: classes.drawerContainer }}
-            onClose={() => setOpenDrawer(false)}
-            open={openDrawer}
-            onOpen={() => setOpenDrawer(true)}>
-            <List>
-              <ListItem divider 
-                        button 
-                        onClick={() => {
-                          setOpenDrawer(false)
-                          history.push(`/`)
-                        }}>
-                <ListItemIcon><HomeIcon/></ListItemIcon>
-                  <ListItemText>HOME</ListItemText>
-              </ListItem>
 
-              <ListItem divider 
-                         button 
-                         onClick={() => {
-                          setOpenDrawer(false)
-                          history.push(`/cases`)
-                        }}>
-                <ListItemIcon><GroupIcon /></ListItemIcon>
-                  <ListItemText>CASOS</ListItemText>
-              </ListItem>
+  return (
+    <>
+      <Drawer
+        anchor='left'
+        classes={{ paper: classes.drawerContainer }}
+        onClose={() => setOpenDrawer(false)}
+        open={openDrawer}
+        onOpen={() => setOpenDrawer(true)}>
+        <List>
+          <ListItem divider
+            button
+            onClick={() => {
+              setOpenDrawer(false)
+              history.push(`/`)
+            }}>
+            <ListItemIcon><HomeIcon /></ListItemIcon>
+            <ListItemText>HOME</ListItemText>
+          </ListItem>
 
-              <ListItem divider
-                        button 
-                        onClick={() => {
-                          setOpenDrawer(false)
-                          history.push(`/world_data`)
-                        }}>
-                <ListItemIcon><PublicIcon/></ListItemIcon>
-                  <ListItemText>ESTADÍSTICAS</ListItemText>
-              </ListItem>
+          <ListItem divider
+            button
+            onClick={() => {
+              setOpenDrawer(false)
+              history.push(`/cases`)
+            }}>
+            <ListItemIcon><GroupIcon /></ListItemIcon>
+            <ListItemText>CASOS</ListItemText>
+          </ListItem>
 
-              <ListItem divider 
-                        button 
-                        onClick={() => {
-                          setOpenDrawer(false)
-                          history.push(`/report`)
-                        }}>
-                <ListItemIcon><PersonAddIcon/></ListItemIcon>
-                  <ListItemText>REPORTE</ListItemText>
-              </ListItem>
-            </List>
-          </Drawer>
-          <IconButton
-            className={classes.iconButtonContainer}
-            onClick={() => setOpenDrawer(!openDrawer)}
-            disableRipple>
-            <MenuIcon className={classes.menuIconToggle} />
-          </IconButton>
-        </>
-      );
-    };
+          <ListItem divider
+            button
+            onClick={() => {
+              setOpenDrawer(false)
+              history.push(`/world_data`)
+            }}>
+            <ListItemIcon><PublicIcon /></ListItemIcon>
+            <ListItemText>ESTADÍSTICAS</ListItemText>
+          </ListItem>
+
+          <ListItem divider
+            button
+            onClick={() => {
+              setOpenDrawer(false)
+              history.push(`/report`)
+            }}>
+            <ListItemIcon><PersonAddIcon /></ListItemIcon>
+            <ListItemText>REPORTE</ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
+      <IconButton
+        className={classes.iconButtonContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple>
+        <MenuIcon className={classes.menuIconToggle} />
+      </IconButton>
+    </>
+  );
+};
 
 export default Sidebar;
