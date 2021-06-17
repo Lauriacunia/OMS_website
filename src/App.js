@@ -29,6 +29,7 @@ const useStyles = makeStyles({
   },
   container: {
     padding: 0,
+    width: '100%',
   },
 
 });
@@ -57,7 +58,7 @@ const App = () => {
         updateTotalCases: (param) => setTotalCases(param)
       }}>
         <BrowserRouter>
-          <Container className={classes.container} >
+          <Container className={classes.container} maxWidth={false}>
             <NavBar />
             {isLoading && <LoaderCube />}
             <Switch>
