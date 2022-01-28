@@ -3,10 +3,10 @@
 </p>
 
 ## Funcionalidad
-- [x] Website
+- [x] Website. Single page application
 # Deploy
 
-[Netlify](https://oms-challenge-laura.netlify.app/)
+[Te invito a conocer el sitio ](https://oms-challenge-laura.netlify.app/)
 
 
 ## Construído con…
